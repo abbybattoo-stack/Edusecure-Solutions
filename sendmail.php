@@ -2,54 +2,48 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require __DIR__ . '/../vendor/autoload.php'; // Adjust path if vendor is not in same folder
+// Load PHPMailer manually (no Composer)
+require __DIR__ . '/PHPMailer/Exception.php';
+require __DIR__ . '/PHPMailer/PHPMailer.php';
+require __DIR__ . '/PHPMailer/SMTP.php';
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Collect form inputs safely
-    $first_name = htmlspecialchars($_POST['first_name'] ?? '');
-    $last_name  = htmlspecialchars($_POST['last_name'] ?? '');
-    $email      = htmlspecialchars($_POST['email'] ?? '');
-    $service    = htmlspecialchars($_POST['service'] ?? '');
-    $message    = htmlspecialchars($_POST['message'] ?? '');
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $first_name = $_POST['first_name'] ?? '';
+    $last_name  = $_POST['last_name'] ?? '';
+    $email      = $_POST['email'] ?? '';
+    $service    = $_POST['service'] ?? '';
+    $message    = $_POST['message'] ?? '';
 
     $mail = new PHPMailer(true);
 
     try {
-        // SMTP settings for GoDaddy
+        // SMTP settings
         $mail->isSMTP();
         $mail->Host       = 'smtp.secureserver.net';
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'info@edusecuresolutions.com';  // Your email
-        $mail->Password   = 'Security@123';                 // Your email password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;    // SSL
-        $mail->Port       = 465;                            // SSL port
+        $mail->Username   = 'info@edusecuresolutions.com'; 
+        $mail->Password   = 'Security@123'; 
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; 
+        $mail->Port       = 465;
 
-        // Sender & Recipient
+        // From & To
         $mail->setFrom('info@edusecuresolutions.com', 'EduSecure Website');
-        $mail->addAddress('info@edusecuresolutions.com');   // Send to yourself
-
-        // (Optional) add user as reply-to
-        if (!empty($email)) {
-            $mail->addReplyTo($email, $first_name . ' ' . $last_name);
-        }
+        $mail->addAddress('info@edusecuresolutions.com');
 
         // Email content
         $mail->isHTML(true);
         $mail->Subject = "New Contact Form Message";
         $mail->Body    = "
-            <h2>New Contact Form Submission</h2>
-            <p><strong>Name:</strong> {$first_name} {$last_name}</p>
-            <p><strong>Email:</strong> {$email}</p>
-            <p><strong>Service:</strong> {$service}</p>
-            <p><strong>Message:</strong><br>" . nl2br($message) . "</p>
+            <p><strong>Name:</strong> $first_name $last_name</p>
+            <p><strong>Email:</strong> $email</p>
+            <p><strong>Service:</strong> $service</p>
+            <p><strong>Message:</strong><br>$message</p>
         ";
 
-        // Send email
         $mail->send();
         echo "Message sent successfully!";
     } catch (Exception $e) {
-        echo "Mailer Error: {$mail->ErrorInfo}";
+        echo "Error: {$mail->ErrorInfo}";
     }
-} else {
-    echo "Invalid request method.";
 }
+?>
