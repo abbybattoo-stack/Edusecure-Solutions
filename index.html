@@ -549,31 +549,36 @@
 
 					
     <div class="bg-gray-50 p-8 rounded-xl">
-   <form action="https://formspree.io/f/mldwjkkw" method="POST">
+  <form id="contact-form" action="https://formspree.io/f/mldwjkkw" method="POST">
       <div class="grid md:grid-cols-2 gap-6 mb-6">
           <div>
               <label class="block text-gray-700 font-semibold mb-2">First Name</label>
-              <input type="text" name="first_name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary" required>
+              <input type="text" name="first_name" required
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
           </div>
           <div>
               <label class="block text-gray-700 font-semibold mb-2">Last Name</label>
-              <input type="text" name="last_name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary" required>
+              <input type="text" name="last_name" required
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
           </div>
       </div>
-      
+
       <div class="mb-6">
           <label class="block text-gray-700 font-semibold mb-2">Email</label>
-          <input type="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary" required>
+          <input type="email" name="email" required
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
       </div>
-      
+
       <div class="mb-6">
           <label class="block text-gray-700 font-semibold mb-2">Organization</label>
-          <input type="text" name="organization" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
+          <input type="text" name="organization"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
       </div>
-      
+
       <div class="mb-6">
           <label class="block text-gray-700 font-semibold mb-2">Service Interest</label>
-          <select name="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
+          <select name="service"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
               <option value="">Select a service</option>
               <option>LMS Security Audit</option>
               <option>LMS Optimization</option>
@@ -585,16 +590,52 @@
               <option>Transcription</option>
           </select>
       </div>
-      
+
       <div class="mb-6">
           <label class="block text-gray-700 font-semibold mb-2">Message</label>
-          <textarea name="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary" placeholder="Tell us about your LMS needs..." required></textarea>
+          <textarea name="message" rows="4" required
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
+              placeholder="Tell us about your LMS needs..."></textarea>
       </div>
-      
-      	<button type="submit" class="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-secondary transition-colors">
+
+      <button type="submit"
+          class="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-secondary transition-colors">
           Send Message
-      	</button>
-    	</form>
+      </button>
+  </form>
+
+  <!-- Success / Error Message -->
+  <div id="form-message" class="mt-4 hidden text-center font-semibold"></div>
+</div>
+
+<script>
+document.getElementById("contact-form").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const messageBox = document.getElementById("form-message");
+
+    try {
+        const response = await fetch(form.action, {
+            method: form.method,
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+            messageBox.textContent = "✅ Thank you! Your message has been sent successfully.";
+            messageBox.className = "mt-4 text-green-600 font-semibold text-center";
+            form.reset();
+        } else {
+            messageBox.textContent = "❌ Oops! Something went wrong. Please try again.";
+            messageBox.className = "mt-4 text-red-600 font-semibold text-center";
+        }
+    } catch (error) {
+        messageBox.textContent = "⚠️ Network error. Please try again later.";
+        messageBox.className = "mt-4 text-red-600 font-semibold text-center";
+    }
+});
+</script>
 	</div>
 </div>
 </section>
