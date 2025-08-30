@@ -2,55 +2,40 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'vendor/autoload.php'; // Ensure PHPMailer is installed via Composer
+require 'vendor/autoload.php'; // make sure Composer dependencies are installed
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $firstName    = htmlspecialchars($_POST['first_name'] ?? '');
-    $lastName     = htmlspecialchars($_POST['last_name'] ?? '');
-    $email        = htmlspecialchars($_POST['email'] ?? '');
-    $organization = htmlspecialchars($_POST['organization'] ?? '');
-    $service      = htmlspecialchars($_POST['service'] ?? '');
-    $subject      = htmlspecialchars($_POST['subject'] ?? '');
-    $message      = htmlspecialchars($_POST['message'] ?? '');
+    $first_name = $_POST['first_name'] ?? '';
+    $last_name  = $_POST['last_name'] ?? '';
+    $email      = $_POST['email'] ?? '';
+    $service    = $_POST['service'] ?? '';
+    $message    = $_POST['message'] ?? '';
 
     $mail = new PHPMailer(true);
 
     try {
+        // SMTP settings
         $mail->isSMTP();
-        $mail->Host       = 'smtp.secureserver.net';
-        $mail->SMTPAuth   = true;
-        $mail->Username   = 'info@edusecuresolutions.com';
-        $mail->Password   = 'Security@123';  // ⚠️ replace with your real password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-        $mail->Port       = 465;
+        $mail->Host = 'smtp.secureserver.net';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'info@edusecuresolutions.com'; 
+        $mail->Password = 'Security@123'; 
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // use ssl
+        $mail->Port = 465;
 
+        // From & To
         $mail->setFrom('info@edusecuresolutions.com', 'EduSecure Website');
         $mail->addAddress('info@edusecuresolutions.com');
 
-        if (!empty($email)) {
-            $mail->addReplyTo($email, $firstName . ' ' . $lastName);
-        }
-
+        // Content
         $mail->isHTML(true);
-        $mail->Subject = "New Contact Form Submission: $subject";
+        $mail->Subject = "New Contact Form Message";
         $mail->Body    = "
-            <h2>New Contact Form Submission</h2>
-            <p><strong>Name:</strong> {$firstName} {$lastName}</p>
-            <p><strong>Email:</strong> {$email}</p>
-            <p><strong>Organization:</strong> {$organization}</p>
-            <p><strong>Service Interest:</strong> {$service}</p>
-            <p><strong>Subject:</strong> {$subject}</p>
-            <p><strong>Message:</strong></p>
-            <p>{$message}</p>
+            <p><strong>Name:</strong> $first_name $last_name</p>
+            <p><strong>Email:</strong> $email</p>
+            <p><strong>Service:</strong> $service</p>
+            <p><strong>Message:</strong><br>$message</p>
         ";
-
-        $mail->AltBody = "New contact form submission:\n\n"
-            . "Name: {$firstName} {$lastName}\n"
-            . "Email: {$email}\n"
-            . "Organization: {$organization}\n"
-            . "Service Interest: {$service}\n"
-            . "Subject: {$subject}\n"
-            . "Message:\n{$message}";
 
         $mail->send();
         echo "Message sent successfully!";
