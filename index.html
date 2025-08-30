@@ -551,18 +551,18 @@
 
 					
     <section class="bg-gray-50 p-8 rounded-xl">
-  <form method="POST" action="/php/sendmail.php">
-    <!-- First Name -->
+  <form method="POST" action="send.php">
+    <!-- First Name & Last Name -->
     <div class="grid md:grid-cols-2 gap-6 mb-6">
       <div>
         <label class="block text-gray-700 font-semibold mb-2">First Name</label>
         <input type="text" name="first_name" required
-               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
       </div>
       <div>
         <label class="block text-gray-700 font-semibold mb-2">Last Name</label>
         <input type="text" name="last_name" required
-               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
       </div>
     </div>
 
@@ -570,49 +570,41 @@
     <div class="mb-6">
       <label class="block text-gray-700 font-semibold mb-2">Email</label>
       <input type="email" name="email" required
-             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
     </div>
 
     <!-- Service Interest -->
     <div class="mb-6">
       <label class="block text-gray-700 font-semibold mb-2">Service Interest</label>
       <select name="service"
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
-        <option>Select a service</option>
-        <option>LMS Security Audit</option>
-        <option>LMS Optimization</option>
-        <option>LMS Technical Support</option>
-        <option>Data Migration</option>
-        <option>Training & Consulting</option>
-        <option>Analytics & Reporting</option>
-        <option>Data Labeling</option>
-        <option>Transcription</option>
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
+        <option value="">Select a service</option>
+        <option value="LMS Security Audit">LMS Security Audit</option>
+        <option value="LMS Optimization">LMS Optimization</option>
+        <option value="LMS Technical Support">LMS Technical Support</option>
+        <option value="Data Migration">Data Migration</option>
+        <option value="Training & Consulting">Training & Consulting</option>
+        <option value="Analytics & Reporting">Analytics & Reporting</option>
+        <option value="Data Labeling">Data Labeling</option>
+        <option value="Transcription">Transcription</option>
       </select>
-    </div>
-
-    <!-- Subject -->
-    <div class="mb-6">
-      <label class="block text-gray-700 font-semibold mb-2">Subject</label>
-      <input type="text" name="subject" required
-             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
     </div>
 
     <!-- Message -->
     <div class="mb-6">
       <label class="block text-gray-700 font-semibold mb-2">Message</label>
       <textarea name="message" rows="4" required
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
-                placeholder="Tell us about your LMS needs..."></textarea>
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
+        placeholder="Tell us about your LMS needs..."></textarea>
     </div>
 
     <!-- Submit -->
     <button type="submit"
-            class="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-secondary transition-colors">
+      class="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-secondary transition-colors">
       Send Message
     </button>
   </form>
 </section>
-
 
     <!-- Footer -->
     <footer class="bg-dark text-white py-12">
