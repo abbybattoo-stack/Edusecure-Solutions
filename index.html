@@ -652,11 +652,70 @@ nav {
 /* ══════════════════════════════════════
     ABOUT / STORY
 ══════════════════════════════════════ */
-.story-section {
-  max-width: 1300px; margin: 0 auto;
-  display: grid; grid-template-columns: 1fr 1.2fr;
-  gap: 8rem; align-items: center;
-}
+<section class="section services-section" id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-eyebrow reveal">Our Expertise</div>
+      <h2 class="section-title reveal">Specialized <em>Web Solutions</em></h2>
+    </div>
+    <p class="section-body reveal">We offer tailored development packages designed to scale your business, from professional corporate identities to high-volume retail engines.</p>
+  </div>
+
+  <div class="services-grid">
+
+    <div class="service-card reveal">
+      <div class="card-num">01 / DESIGN</div>
+      <div class="card-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.5 1.5"/><path d="M7 11l5-5"/></svg>
+      </div>
+      <h3 class="card-title">Website Design & Development</h3>
+      <p class="card-desc">Modern, responsive, and SEO-optimized sites that capture your brand's essence and drive engagement.</p>
+      <div class="big-stat" style="font-size: 2rem; margin-bottom: 1rem;">$499 <span style="font-size: 0.8rem; color: var(--muted);">/ Starter</span></div>
+      <ul class="card-features">
+        <li>UI/UX Design focused on conversions</li>
+        <li>Fully Mobile-Responsive coding</li>
+        <li>On-Page SEO setup</li>
+        <li>Speed optimization (Sub-2s load)</li>
+      </ul>
+      <button onclick="scrollToContact()" class="btn-primary" style="width: 100%; margin-top: 2rem;">Get This Offer</button>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="card-num">02 / CORPORATE</div>
+      <div class="card-icon-wrap">
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+      </div>
+      <h3 class="card-title">Business Website Development</h3>
+      <p class="card-desc">Professional digital architecture for established organizations looking to build authority and generate leads.</p>
+      <div class="big-stat" style="font-size: 2rem; margin-bottom: 1rem;">$1,499 <span style="font-size: 0.8rem; color: var(--muted);">/ Professional</span></div>
+      <ul class="card-features">
+        <li>Custom CMS (Moodle/WordPress)</li>
+        <li>Advanced Lead Generation Forms</li>
+        <li>6 Months Premium Maintenance</li>
+        <li>Business Email Integration</li>
+      </ul>
+      <button onclick="scrollToContact()" class="btn-primary" style="width: 100%; margin-top: 2rem;">Build My Brand</button>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="card-num">03 / RETAIL</div>
+      <div class="card-icon-wrap">
+        <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      </div>
+      <h3 class="card-title">eCommerce Website Solutions</h3>
+      <p class="card-desc">Turn your traffic into global revenue with secure payment gateways and automated inventory management.</p>
+      <div class="big-stat" style="font-size: 2rem; margin-bottom: 1rem;">$1,999 <span style="font-size: 0.8rem; color: var(--muted);">/ Enterprise</span></div>
+      <ul class="card-features">
+        <li>Secure Payment Gateway Setup</li>
+        <li>Automated Inventory Tracking</li>
+        <li>Customer Account Portals</li>
+        <li>Product SEO & Analytics</li>
+      </ul>
+      <button onclick="scrollToContact()" class="btn-primary" style="width: 100%; margin-top: 2rem;">Launch Store</button>
+    </div>
+
+  </div>
+</section>
 
 .story-visual {
   position: relative;
