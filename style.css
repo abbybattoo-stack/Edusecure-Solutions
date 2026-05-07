@@ -33,21 +33,26 @@ body {
    STORY SECTION (OVERLAP FIX)
 ══════════════════════════════════════ */
 .story-section {
-  max-width: 1300px; 
+  max-width: 1300px;
   margin: 0 auto;
-  display: grid; 
-  /* Widened the text column and increased the gap to prevent overlap */
-  grid-template-columns: 1fr 1.5fr; 
-  gap: 12rem; 
+  display: flex; /* Switched to flex for better control */
+  flex-wrap: wrap; /* Allows stacking on smaller screens */
+  gap: 8rem; /* Space between visual and text */
   align-items: center;
   padding: 8rem 5vw;
 }
 
 .story-visual {
+  flex: 0 0 450px; /* Forces the box to stay at a specific width */
   position: relative;
-  width: 100%;
-  max-width: 480px; /* Constrains the 100% block size */
   z-index: 2;
+  /* Adds extra right margin to prevent the gold accent from hitting text */
+  margin-right: 4rem; 
+}
+
+.story-text {
+  flex: 1; /* Allows text to take up remaining space */
+  min-width: 320px;
 }
 
 .story-box-main {
@@ -55,21 +60,19 @@ body {
   border: 1px solid var(--border);
   padding: 3rem;
   position: relative;
-  z-index: 2;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  z-index: 5; /* Higher than accent box */
 }
 
 .story-box-accent {
   position: absolute;
-  /* Tucked closer to main box to save space */
-  bottom: -1.5rem; 
-  right: -1.5rem; 
+  /* Tuck it strictly behind the main box so it can't overlap text */
+  bottom: -1rem;
+  right: -1rem; 
   background: rgba(212,168,67,0.08);
   border: 1px solid rgba(212,168,67,0.2);
   padding: 1.5rem 2rem;
   z-index: 1;
 }
-
 /* ══════════════════════════════════════
    COMPONENTS
 ══════════════════════════════════════ */
@@ -107,23 +110,14 @@ body {
    RESPONSIVE DESIGN
 ══════════════════════════════════════ */
 @media (max-width: 1100px) {
-  .story-section { 
-    grid-template-columns: 1fr; /* Stack visually above text */
-    gap: 6rem;
+  .story-section {
+    flex-direction: column; /* Stacks the elements vertically */
     text-align: center;
+    gap: 4rem;
   }
-  
+
   .story-visual {
-    margin: 0 auto;
+    flex: 0 0 auto;
+    margin-right: 0; /* Resets margin when stacked */
   }
-
-  .pillar-list {
-    text-align: left;
-    display: inline-block;
-  }
-}
-
-@media (max-width: 768px) {
-  .big-stat { font-size: 3.5rem; }
-  .story-box-main { padding: 2rem; }
 }
