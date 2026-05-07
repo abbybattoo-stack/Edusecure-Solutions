@@ -1502,7 +1502,7 @@ footer {
           <div style="width:36px;height:36px;border:1px solid rgba(212,168,67,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </div>
-          <span style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--muted);">hello@edusecuresolutions.com</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--muted);">info@edusecuresolutions.com</span>
         </div>
         <div style="display:flex;align-items:center;gap:1rem;">
           <div style="width:36px;height:36px;border:1px solid rgba(212,168,67,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
@@ -1704,3 +1704,16 @@ document.querySelector('.form-submit').addEventListener('click', function() {
 </script>
 </body>
 </html>
+<form id="contact-form" action="https://formspree.io/f/mldwjkkw" method="POST" class="contact-form">
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label">Your Name</label>
+      <input type="text" name="name" class="form-input" placeholder="John Smith" required>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Email Address</label>
+      <input type="email" name="email" class="form-input" placeholder="john@company.com" required>
+    </div>
+  </div>
+  <button type="submit" class="form-submit">Send Message →</button>
+</form>
