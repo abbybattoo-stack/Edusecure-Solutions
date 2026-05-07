@@ -1,32 +1,147 @@
-.gradient-bg {
-  background: linear-gradient(135deg, #800000 0%, #FFD700 100%);
+/* ROOT */
+:root {
+  --black: #050608;
+  --deep: #080a10;
+  --navy: #0c1020;
+  --panel: #0f1422;
+  --card: #131929;
+  --border: rgba(255,255,255,0.06);
+  --gold: #d4a843;
+  --gold2: #f0c870;
+  --teal: #2ec4b6;
+  --coral: #e05c3a;
+  --text: #c8cdd9;
+  --muted: #5a6175;
+  --white: #eef0f6;
 }
-.card-hover {
-  transition: all 0.3s ease;
+
+/* RESET */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-.card-hover:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 
-              0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
 }
-.fade-in {
-  animation: fadeInUp 0.6s ease-out;
+
+body {
+  background: var(--black);
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
 }
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 500;
+
+  padding: 1.25rem 5vw;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: rgba(5,6,8,0.8);
+  backdrop-filter: blur(24px);
+
+  border-bottom: 1px solid var(--border);
+
+  transition: padding 0.4s;
 }
-.navbar-scroll {
-  transition: all 0.3s ease;
-}
-.typing-animation {
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 10rem 5vw 6rem;
+
+  position: relative;
   overflow: hidden;
-  border-right: 2px solid #FFD700;
-  white-space: nowrap;
-  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+
+  text-align: center;
 }
-@keyframes typing { from { width: 0 } to { width: 100% } }
-@keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: #FFD700 }
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 7rem);
+  color: var(--white);
+}
+
+.hero-desc {
+  max-width: 600px;
+  margin: 2rem auto;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* BUTTONS */
+.btn-primary,
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1rem 2.5rem;
+
+  text-decoration: none;
+
+  transition: all 0.3s;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color: var(--black);
+}
+
+.btn-outline {
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+/* CURSOR */
+.cursor {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(212,168,67,0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+  }
 }
