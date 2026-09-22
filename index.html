@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduSecure Solutions — Build Your Digital Success Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════
+   ROOT & RESET
+══════════════════════════════════════ */
+:root {
+  --black:   #050608;
+  --deep:    #080a10;
+  --navy:    #0c1020;
+  --panel:   #0f1422;
+  --card:    #131929;
+  --border:  rgba(255,255,255,0.06);
+  --gold:    #d4a843;
+  --gold2:   #f0c870;
+  --teal:    #2ec4b6;
+  --teal2:   #5fe0d4;
+  --coral:   #e05c3a;
+  --cyan:    #22d3ee;
+  --cyan2:   #67e8f9;
+  --sky:     #38bdf8;
+  --sky2:    #7cd4fb;
+  --fire:    #e8642e;
+  --fire2:   #ff8a5c;
+  --violet:  #a855f7;
+  --violet2: #c98bfb;
+  --text:    #c8cdd9;
+  --muted:   #5a6175;
+  --white:   #eef0f6;
+  --glow:    rgba(212,168,67,0.15);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--black);
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+@media (hover: none) { body { cursor: auto; } .cursor, .cursor-ring { display: none; } }
+
+/* ══════════════════════════════════════
+   CUSTOM CURSOR
+══════════════════════════════════════ */
+.cursor {
+  position: fixed;
+  width: 10px; height: 10px;
+  background: var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s, width 0.3s, height 0.3s, opacity 0.3s, background 0.3s;
+  mix-blend-mode: screen;
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 38px; height: 38px;
+  border: 1px solid rgba(212,168,67,0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease, width 0.3s, height 0.3s, border-color 0.3s;
+}
+
+body:hover .cursor { opacity: 1; }
+
+/* ══════════════════════════════════════
+   NOISE OVERLAY
+══════════════════════════════════════ */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9000;
+  opacity: 0.5;
+}
+
+/* ══════════════════════════════════════
+   NAV
+══════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 500;
+  padding: 1.25rem 5vw;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(5,6,8,0.85);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+  transition: padding 0.4s;
+}
+
+.nav-logo {
+  display: flex; align-items: center; gap: 0.75rem;
+  text-decoration: none;
+}
+
+.logo-emblem {
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, var(--gold), #a87a2a);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.logo-emblem svg { width: 18px; height: 18px; fill: var(--black); }
+
+.logo-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--white);
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+}
+
+.logo-name span { color: var(--gold); }
+.logo-tagline {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.55rem;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex; gap: 2.2rem;
+  align-items: center;
+}
+
+.nav-links > li > a, .nav-links > li > span.nav-drop-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.3s;
+  position: relative;
+  cursor: none;
+  display: inline-flex; align-items: center; gap: .3rem;
+}
+
+.nav-links > li > a::after {
+  content: '';
+  position: absolute; bottom: -4px; left: 0; right: 0;
+  height: 1px; background: var(--gold);
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+
+.nav-links > li > a:hover { color: var(--white); }
+.nav-links > li > a:hover::after { transform: scaleX(1); }
+
+.nav-item-drop { position: relative; }
+.nav-drop-label svg { width: 10px; height: 10px; stroke: var(--muted); transition: transform .3s; }
+.nav-item-drop:hover .nav-drop-label { color: var(--white); }
+.nav-item-drop:hover .nav-drop-label svg { transform: rotate(180deg); stroke: var(--gold); }
+
+.nav-dropdown {
+  position: absolute; top: calc(100% + 1.4rem); left: 50%; transform: translateX(-50%) translateY(-8px);
+  width: 300px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+  padding: 0.6rem;
+  opacity: 0; visibility: hidden;
+  transition: opacity .25s, transform .25s, visibility .25s;
+}
+.nav-item-drop:hover .nav-dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+
+.nav-dropdown a {
+  display: flex; align-items: center; gap: .8rem;
+  padding: .7rem .8rem;
+  text-decoration: none;
+  color: var(--text);
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .01em;
+  text-transform: none;
+  transition: background .2s, color .2s;
+}
+.nav-dropdown a:hover { background: var(--card); color: var(--white); }
+.nav-dropdown a .dot { width: 6px; height: 6px; flex-shrink: 0; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); }
+
+.nav-cta {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  border: none;
+  padding: 0.65rem 1.8rem;
+  cursor: none;
+  transition: all 0.3s;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(212,168,67,0.35);
+}
+
+.nav-toggle { display: none; }
+
+@media (max-width: 980px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: block; background: none; border: 1px solid var(--border); color: var(--white); padding: .5rem .7rem; }
+}
+
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 10rem 5vw 6rem;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  animation: drift 12s ease-in-out infinite alternate;
+}
+
+.orb-1 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(212,168,67,0.12), transparent 70%); top: -200px; right: -100px; animation-delay: 0s; }
+.orb-2 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(46,196,182,0.08), transparent 70%); bottom: -100px; left: -150px; animation-delay: -4s; }
+.orb-3 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(224,92,58,0.07), transparent 70%); top: 40%; left: 50%; transform: translateX(-50%); animation-delay: -8s; }
+
+@keyframes drift { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(-40px) scale(1.08); } }
+
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(212,168,67,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,168,67,0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black, transparent);
+}
+
+.hero-tag {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .72rem; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(212,168,67,.3);
+  padding: .55rem 1.2rem;
+  margin-bottom: 2rem;
+  position: relative; z-index: 2;
+}
+.hero-tag-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse-dot 1.6s ease-in-out infinite; }
+@keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(2.6rem, 6.5vw, 5.4rem);
+  line-height: 1.08;
+  color: var(--white);
+  max-width: 1050px;
+  position: relative; z-index: 2;
+  margin-bottom: 1.6rem;
+}
+.hero h1 em { font-style: italic; color: var(--gold); }
+.hero h1 .stroke { -webkit-text-stroke: 1px var(--muted); color: transparent; }
+
+.hero-sub {
+  max-width: 640px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text);
+  position: relative; z-index: 2;
+  margin-bottom: 2.6rem;
+}
+
+.hero-actions { display: flex; gap: 1.2rem; position: relative; z-index: 2; flex-wrap: wrap; justify-content: center; }
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: .6rem;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color: var(--black);
+  font-weight: 700; font-size: .9rem; letter-spacing: .02em;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  transition: all .3s;
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(212,168,67,.35); }
+.btn-primary svg { width: 16px; height: 16px; stroke: var(--black); fill: none; stroke-width: 2; }
+
+.btn-outline {
+  display: inline-flex; align-items: center;
+  border: 1px solid var(--border);
+  color: var(--white);
+  font-weight: 700; font-size: .9rem;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  transition: all .3s;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ══════════════════════════════════════
+   MARQUEE / TRUST
+══════════════════════════════════════ */
+.marquee { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--deep); padding: 1.4rem 0; position: relative; z-index: 2; }
+.marquee-track { display: flex; gap: 3rem; width: max-content; animation: scroll-marquee 32s linear infinite; }
+@keyframes scroll-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-item { font-family: 'JetBrains Mono', monospace; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); white-space: nowrap; display: flex; align-items: center; gap: 3rem; }
+.marquee-item::after { content: '◆'; color: var(--gold); font-size: .5rem; margin-left: 3rem; }
+
+/* ══════════════════════════════════════
+   SECTION SHELL / SHARED TYPE
+══════════════════════════════════════ */
+.section { padding: 7rem 5vw; position: relative; }
+.section-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: .6rem; }
+.section-eyebrow::before { content: ''; width: 22px; height: 1px; background: var(--gold); }
+.section-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(2rem, 4.2vw, 3.2rem); color: var(--white); line-height: 1.15; }
+.section-title em { font-style: italic; color: var(--gold); }
+.section-body { font-size: 1rem; line-height: 1.75; color: var(--text); max-width: 480px; }
+
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+.reveal.up { opacity: 1; transform: translateY(0); }
+
+/* ══════════════════════════════════════
+   SERVICES OVERVIEW GRID
+══════════════════════════════════════ */
+.services-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 3rem; margin-bottom: 3.5rem; flex-wrap: wrap; }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.service-card {
+  background: var(--card); border: 1px solid var(--border);
+  padding: 2.4rem; position: relative; overflow: hidden;
+  transition: transform .4s, border-color .4s, box-shadow .4s;
+  --mx: 50%; --my: 50%;
+}
+.service-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(400px circle at var(--mx) var(--my), rgba(212,168,67,.08), transparent 60%);
+  opacity: 0; transition: opacity .4s; pointer-events: none;
+}
+.service-card:hover { transform: translateY(-6px); border-color: var(--accent, rgba(212,168,67,.3)); box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+.service-card:hover::before { opacity: 1; }
+.card-num { font-family: 'JetBrains Mono', monospace; font-size: .68rem; letter-spacing: .12em; color: var(--accent, var(--gold)); margin-bottom: 1.4rem; }
+.card-icon-wrap { width: 48px; height: 48px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; margin-bottom: 1.6rem; transition: border-color .3s; }
+.service-card:hover .card-icon-wrap { border-color: var(--accent, var(--gold)); }
+.card-icon-wrap svg { width: 22px; height: 22px; stroke: var(--accent, var(--gold)); fill: none; stroke-width: 1.4; }
+.card-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.25rem; color: var(--white); margin-bottom: .8rem; }
+.card-desc { font-size: .88rem; line-height: 1.65; color: var(--muted); margin-bottom: 1.4rem; }
+.card-features { list-style: none; margin-bottom: 1.4rem; }
+.card-features li { font-size: .82rem; color: var(--text); padding: .35rem 0 .35rem 1.1rem; position: relative; }
+.card-features li::before { content: ''; position: absolute; left: 0; top: .68rem; width: 5px; height: 5px; background: var(--accent, var(--gold)); }
+.card-link { display: inline-flex; align-items: center; gap: .5rem; color: var(--accent, var(--gold)); text-decoration: none; font-size: .8rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.card-link svg { width: 14px; height: 14px; stroke: var(--accent, var(--gold)); fill: none; stroke-width: 2; transition: transform .3s; }
+.card-link:hover svg { transform: translateX(4px); }
+
+.service-card.wide { grid-column: span 3; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; }
+
+@media (max-width: 1080px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .service-card.wide { grid-column: span 2; grid-template-columns: 1fr; }
+}
+@media (max-width: 680px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .service-card.wide { grid-column: span 1; }
+}
+
+/* ══════════════════════════════════════
+   SERVICE DEEP-DIVE SECTIONS (shared)
+══════════════════════════════════════ */
+.svc-section { padding: 7rem 5vw; position: relative; border-top: 1px solid var(--border); scroll-margin-top: 90px; }
+.svc-section.alt { background: var(--panel); }
+.svc-inner { max-width: 1280px; margin: 0 auto; }
+
+.svc-banner { display: grid; grid-template-columns: 1.25fr 1fr; gap: 3.5rem; align-items: center; margin-bottom: 5.5rem; }
+.svc-kicker { display: inline-flex; align-items: center; gap: .6rem; font-family: 'JetBrains Mono', monospace; font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.3rem; }
+.svc-kicker::before { content: ''; width: 22px; height: 1px; background: var(--accent); }
+.svc-banner h1 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(2.2rem, 4.4vw, 3.4rem); color: var(--white); line-height: 1.12; margin-bottom: 1.3rem; }
+.svc-banner h1 em { font-style: italic; color: var(--accent); }
+.svc-banner-desc { font-size: 1.02rem; line-height: 1.75; color: var(--text); max-width: 560px; margin-bottom: 2rem; }
+.svc-actions { display: flex; gap: 1.1rem; flex-wrap: wrap; }
+.svc-btn { display: inline-flex; align-items: center; gap: .6rem; background: linear-gradient(135deg, var(--accent), var(--accent2, var(--accent))); color: var(--black); font-weight: 700; font-size: .88rem; padding: .95rem 1.9rem; text-decoration: none; clip-path: polygon(9px 0%, 100% 0%, calc(100% - 9px) 100%, 0% 100%); transition: all .3s; }
+.svc-btn:hover { transform: translateY(-3px); }
+.svc-btn svg { width: 15px; height: 15px; fill: none; stroke: var(--black); stroke-width: 2; }
+.svc-btn-out { display: inline-flex; align-items: center; border: 1px solid var(--border); color: var(--white); font-weight: 700; font-size: .88rem; padding: .95rem 1.9rem; text-decoration: none; transition: all .3s; }
+.svc-btn-out:hover { border-color: var(--accent); color: var(--accent); }
+
+.svc-panel { background: var(--card); border: 1px solid var(--border); padding: 2.2rem; position: relative; }
+.svc-panel-label { font-family: 'JetBrains Mono', monospace; font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.6rem; display: flex; align-items: center; gap: .5rem; }
+.svc-panel-label .live-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse-dot 1.6s ease-in-out infinite; }
+.svc-panel-stats { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.4rem; margin-top: 1.6rem; }
+.svc-panel-stat { border-top: 1px solid var(--border); padding-top: 1rem; }
+.svc-panel-stat .n { font-family: 'Playfair Display', serif; font-size: 1.9rem; color: var(--accent); }
+.svc-panel-stat .l { font-size: .72rem; color: var(--muted); margin-top: .2rem; text-transform: uppercase; letter-spacing: .05em; }
+.svc-panel-list { list-style: none; display: flex; flex-direction: column; gap: .9rem; }
+.svc-panel-list li { font-size: .88rem; color: var(--text); display: flex; align-items: center; gap: .7rem; }
+.svc-panel-list li .b { width: 6px; height: 6px; background: var(--accent); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); flex-shrink: 0; }
+
+.svc-head { max-width: 760px; margin-bottom: 3rem; }
+.svc-head h2 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(1.9rem, 3.6vw, 2.7rem); color: var(--white); line-height: 1.18; margin-bottom: 1rem; }
+.svc-head h2 em { font-style: italic; color: var(--accent); }
+.svc-head p { font-size: 1rem; line-height: 1.75; color: var(--text); max-width: 620px; }
+.svc-head-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 2.5rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.svc-head-row .svc-head { margin-bottom: 0; }
+.svc-head-aside { font-size: .92rem; color: var(--text); line-height: 1.7; max-width: 340px; }
+
+/* detail / feature grid */
+.detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.4rem; margin-bottom: 1.4rem; }
+.detail-card { background: var(--card); border: 1px solid var(--border); padding: 2rem; transition: transform .3s, border-color .3s; }
+.detail-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+.detail-card.wide { grid-column: span 2; }
+.detail-num { font-family: 'JetBrains Mono', monospace; font-size: .64rem; letter-spacing: .1em; color: var(--accent); margin-bottom: 1.1rem; text-transform: uppercase; }
+.detail-icon { width: 42px; height: 42px; border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; margin-bottom: 1.3rem; }
+.detail-icon svg { width: 19px; height: 19px; stroke: var(--accent); fill: none; stroke-width: 1.5; }
+.detail-card h4 { font-size: 1.08rem; color: var(--white); margin-bottom: .6rem; font-weight: 700; }
+.detail-card p { font-size: .88rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.1rem; }
+.detail-tags { display: flex; flex-wrap: wrap; gap: .45rem; }
+.detail-tag { font-family: 'JetBrains Mono', monospace; font-size: .6rem; padding: .3rem .6rem; border: 1px solid var(--border); color: var(--muted); }
+@media (max-width: 760px) { .detail-card.wide { grid-column: span 1; } }
+
+/* timeline */
+.timeline2 { display: flex; flex-direction: column; }
+.tl2-item { display: grid; grid-template-columns: 60px 1fr; gap: 1.6rem; padding: 1.7rem 0; border-bottom: 1px solid var(--border); }
+.tl2-item:last-child { border-bottom: none; }
+.tl2-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--accent); opacity: .55; }
+.tl2-content .tl2-meta { font-family: 'JetBrains Mono', monospace; font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: .4rem; }
+.tl2-content h4 { color: var(--white); font-size: 1.04rem; margin-bottom: .5rem; font-weight: 700; }
+.tl2-content p { color: var(--muted); font-size: .88rem; line-height: 1.65; margin-bottom: .8rem; }
+.tl2-tags span { font-family: 'JetBrains Mono', monospace; font-size: .6rem; color: var(--accent); border: 1px solid var(--border); padding: .25rem .55rem; margin-right: .4rem; display: inline-block; margin-bottom: .3rem; }
+
+/* pricing */
+.pricing-grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.4rem; }
+.price-card { background: var(--card); border: 1px solid var(--border); padding: 2.3rem; position: relative; display: flex; flex-direction: column; }
+.price-card.feat { border-color: var(--accent); box-shadow: 0 25px 60px -20px rgba(0,0,0,.6); }
+.price-badge { position: absolute; top: -12px; left: 2rem; background: var(--accent); color: var(--black); font-size: .64rem; font-weight: 700; padding: .3rem .8rem; text-transform: uppercase; letter-spacing: .08em; }
+.price-tier { font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: var(--accent); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1.1rem; }
+.price-val { font-family: 'Playfair Display', serif; font-size: 2.3rem; color: var(--white); margin-bottom: .2rem; }
+.price-val small { font-size: 1rem; color: var(--muted); font-family: 'Syne', sans-serif; }
+.price-cycle { font-size: .78rem; color: var(--muted); margin-bottom: 1.6rem; }
+.price-feats { list-style: none; display: flex; flex-direction: column; gap: .7rem; margin-bottom: 1.8rem; flex-grow: 1; }
+.price-feats li { font-size: .84rem; color: var(--text); display: flex; align-items: flex-start; gap: .6rem; }
+.price-feats li svg { width: 13px; height: 13px; stroke: var(--accent); flex-shrink: 0; margin-top: .2rem; }
+.price-feats li.off { color: var(--muted); opacity: .4; }
+.price-feats li.off svg { stroke: var(--muted); }
+.price-cta { display: block; text-align: center; padding: .9rem; border: 1px solid var(--accent); color: var(--white); text-decoration: none; font-size: .84rem; font-weight: 700; letter-spacing: .04em; transition: all .3s; }
+.price-cta:hover, .price-card.feat .price-cta { background: var(--accent); color: var(--black); }
+
+/* faq */
+.faq-list2 { display: flex; flex-direction: column; max-width: 820px; }
+.faq-item2 { border-bottom: 1px solid var(--border); }
+.faq-q2 { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.35rem 0; cursor: none; color: var(--white); font-size: .98rem; font-weight: 700; }
+.faq-q2 svg { width: 15px; height: 15px; stroke: var(--accent); fill: none; stroke-width: 2; transition: transform .3s; flex-shrink: 0; }
+.faq-item2.open .faq-q2 svg { transform: rotate(180deg); }
+.faq-a2 { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+.faq-item2.open .faq-a2 { max-height: 320px; }
+.faq-a2 p { padding: 0 0 1.4rem; color: var(--muted); font-size: .88rem; line-height: 1.7; max-width: 700px; }
+
+/* stats strip */
+.stats-strip2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.3rem; margin-top: 2.5rem; }
+.stat-box2 { text-align: left; padding: 1.6rem 1.4rem; border: 1px solid var(--border); background: var(--card); }
+.stat-box2 .n { font-family: 'Playfair Display', serif; font-size: 2.1rem; color: var(--accent); }
+.stat-box2 .l { font-size: .78rem; color: var(--white); margin-top: .3rem; font-weight: 700; }
+.stat-box2 .d { font-size: .76rem; color: var(--muted); margin-top: .4rem; line-height: 1.5; }
+
+/* before/after */
+.ba-grid2 { display: flex; flex-direction: column; gap: 1.1rem; }
+.ba-row2 { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.3rem; background: var(--card); border: 1px solid var(--border); flex-wrap: wrap; gap: .6rem; }
+.ba-row2 .ba-l { font-size: .86rem; color: var(--text); font-weight: 600; }
+.ba-row2 .ba-vals { font-family: 'JetBrains Mono', monospace; font-size: .85rem; display: flex; align-items: center; gap: .6rem; }
+.ba-row2 .before { color: var(--muted); }
+.ba-row2 .arrow { color: var(--accent); }
+.ba-row2 .after { color: var(--accent); font-weight: 700; }
+
+/* case cards */
+.case-grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.4rem; }
+.case-card2 { background: var(--card); border: 1px solid var(--border); padding: 2rem; }
+.case-cat2 { font-family: 'JetBrains Mono', monospace; font-size: .62rem; color: var(--accent); text-transform: uppercase; letter-spacing: .1em; margin-bottom: .8rem; }
+.case-card2 h4 { color: var(--white); font-size: 1.02rem; margin-bottom: .6rem; font-weight: 700; }
+.case-card2 p { color: var(--muted); font-size: .84rem; line-height: 1.6; margin-bottom: 1.2rem; }
+.case-metrics2 { display: flex; gap: 2rem; }
+.case-metrics2 .n { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--accent); }
+.case-metrics2 .l { font-size: .68rem; color: var(--muted); }
+
+/* testimonial */
+.testi2 { background: var(--card); border-left: 2px solid var(--accent); padding: 1.8rem 2rem; margin-top: 1.5rem; }
+.testi2 p { font-style: italic; color: var(--text); font-size: .96rem; line-height: 1.7; margin-bottom: 1rem; }
+.testi2 .attr { font-size: .78rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+.testi2 .results { display: flex; gap: 2rem; margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid var(--border); }
+.testi2 .results .n { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--accent); }
+.testi2 .results .l { font-size: .68rem; color: var(--muted); }
+
+@media (max-width: 900px) {
+  .svc-banner { grid-template-columns: 1fr; }
+  .svc-head-row { flex-direction: column; align-items: flex-start; }
+}
+
+/* ══════════════════════════════════════
+   ABOUT / STORY
+══════════════════════════════════════ */
+.story-section { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.story-box-main { background: var(--card); border: 1px solid var(--border); padding: 2.6rem; margin-bottom: 1.5rem; }
+.big-stat { font-family: 'Playfair Display', serif; font-size: 3.6rem; color: var(--gold); font-weight: 700; }
+.big-stat-label { font-size: .85rem; color: var(--muted); margin-bottom: 2rem; }
+.story-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+.story-stat-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--white); }
+.story-stat-label { font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.story-box-accent { background: linear-gradient(135deg, rgba(212,168,67,.1), rgba(46,196,182,.05)); border: 1px solid rgba(212,168,67,.2); padding: 2rem; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.2rem; color: var(--white); line-height: 1.5; }
+.story-text p { font-size: 1rem; line-height: 1.8; color: var(--text); margin: 1.2rem 0; }
+.pillar-list { list-style: none; margin: 1.6rem 0 2rem; display: flex; flex-direction: column; gap: .9rem; }
+.pillar { display: flex; align-items: center; gap: .9rem; font-size: .92rem; color: var(--text); }
+.pillar-dot { width: 6px; height: 6px; background: var(--gold); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); flex-shrink: 0; }
+
+@media (max-width: 900px) { .story-section { grid-template-columns: 1fr; } }
+
+/* ══════════════════════════════════════
+   TRUST METRICS
+══════════════════════════════════════ */
+.trust-metrics { background: var(--panel); border: 1px solid var(--border); padding: 3rem; max-width: 780px; margin: 0 auto; }
+.metric-row { display: grid; grid-template-columns: 200px 1fr 60px; align-items: center; gap: 1.4rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+.metric-row:last-child { border-bottom: none; }
+.metric-label { font-size: .85rem; color: var(--text); font-weight: 600; }
+.metric-bar-wrap { height: 4px; background: var(--card); overflow: hidden; }
+.metric-bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--gold), var(--teal)); transition: width 1.6s cubic-bezier(.16,1,.3,1); }
+.metric-bar.animated { width: calc(var(--w, 0) * 1%); }
+.metric-pct { font-family: 'JetBrains Mono', monospace; font-size: .82rem; color: var(--gold); text-align: right; }
+
+/* ══════════════════════════════════════
+   CTA / CONTACT
+══════════════════════════════════════ */
+.cta-section { background: var(--navy); }
+.cta-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1200px; margin: 0 auto; align-items: start; }
+.cta-left h2 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(2rem, 3.6vw, 2.8rem); color: var(--white); margin: 1rem 0 1.2rem; line-height: 1.2; }
+.cta-left h2 em { font-style: italic; color: var(--gold); }
+.cta-left p { font-size: 1rem; line-height: 1.75; color: var(--text); margin-bottom: 2rem; max-width: 460px; }
+.contact-form { background: var(--card); border: 1px solid var(--border); padding: 2.4rem; display: flex; flex-direction: column; gap: 1.2rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.form-group { display: flex; flex-direction: column; gap: .5rem; }
+.form-label { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 700; }
+.form-input, .form-select, .form-textarea {
+  background: var(--panel); border: 1px solid var(--border); color: var(--white);
+  padding: .85rem 1rem; font-family: 'Syne', sans-serif; font-size: .9rem; outline: none; transition: border-color .3s; cursor: auto;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); }
+.form-textarea { min-height: 100px; resize: vertical; }
+.form-submit {
+  background: linear-gradient(135deg, var(--gold), var(--gold2)); color: var(--black);
+  border: none; padding: 1rem; font-weight: 700; font-size: .9rem; letter-spacing: .04em;
+  cursor: none; transition: all .3s; text-transform: uppercase;
+}
+.form-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(212,168,67,.3); }
+
+@media (max-width: 900px) { .cta-inner { grid-template-columns: 1fr; } .form-row { grid-template-columns: 1fr; } }
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer { background: var(--deep); border-top: 1px solid var(--border); padding: 5rem 5vw 2rem; }
+.footer-top { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 3rem; max-width: 1280px; margin: 0 auto 3rem; }
+.footer-brand p { font-size: .85rem; color: var(--muted); line-height: 1.7; margin-top: 1.2rem; max-width: 280px; }
+.footer-col h4 { font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: var(--white); margin-bottom: 1.2rem; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .8rem; }
+.footer-col a { color: var(--muted); text-decoration: none; font-size: .86rem; transition: color .3s; }
+.footer-col a:hover { color: var(--gold); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; max-width: 1280px; margin: 0 auto; padding-top: 2rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+.footer-copy { font-size: .78rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+.footer-socials { display: flex; gap: .8rem; }
+.social-btn { width: 38px; height: 38px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all .3s; }
+.social-btn svg { width: 15px; height: 15px; fill: var(--muted); transition: fill .3s; }
+.social-btn:hover { border-color: var(--gold); }
+.social-btn:hover svg { fill: var(--gold); }
+
+@media (max-width: 900px) { .footer-top { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .footer-top { grid-template-columns: 1fr; } .section { padding: 5rem 6vw; } .svc-section { padding: 5rem 6vw; } }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-emblem">
+      <svg viewBox="0 0 24 24"><path d="M12 2L4 6v6c0 5.5 3.5 10.7 8 12 4.5-1.3 8-6.5 8-12V6l-8-4z"/></svg>
+    </div>
+    <div>
+      <div class="logo-name">Edu<span>Secure</span></div>
+      <div class="logo-tagline">Solutions</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li class="nav-item-drop">
+      <span class="nav-drop-label">Services <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+      <div class="nav-dropdown">
+        <a href="#web"><span class="dot" style="background:var(--gold)"></span>Website Creation</a>
+        <a href="#lms"><span class="dot" style="background:var(--teal)"></span>LMS Administration</a>
+        <a href="#support"><span class="dot" style="background:var(--sky)"></span>Customer Support</a>
+        <a href="#ai"><span class="dot" style="background:var(--cyan)"></span>Agentic AI</a>
+        <a href="#leadgen"><span class="dot" style="background:var(--fire)"></span>Lead Generation</a>
+        <a href="#design"><span class="dot" style="background:var(--violet)"></span>Creative Design</a>
+      </div>
+    </li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-tag"><span class="hero-tag-dot"></span> Six Services · One Accountable Partner</div>
+  <h1>Build Your <em>Digital</em><br>Success Story</h1>
+  <p class="hero-sub">Websites, learning platforms, AI agents, support teams, growth engines, and brand design — engineered end-to-end by one team, so nothing falls through the cracks between vendors.</p>
+  <div class="hero-actions">
+    <a href="#services" class="btn-primary">
+      Explore Services
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="#contact" class="btn-outline">Talk to Us</a>
+  </div>
+</section>
+
+<!-- ═══ MARQUEE ═══ -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span class="marquee-item">Website Creation</span>
+    <span class="marquee-item">LMS Administration</span>
+    <span class="marquee-item">Customer Support</span>
+    <span class="marquee-item">Agentic AI</span>
+    <span class="marquee-item">Lead Generation</span>
+    <span class="marquee-item">Creative Design</span>
+    <span class="marquee-item">Website Creation</span>
+    <span class="marquee-item">LMS Administration</span>
+    <span class="marquee-item">Customer Support</span>
+    <span class="marquee-item">Agentic AI</span>
+    <span class="marquee-item">Lead Generation</span>
+    <span class="marquee-item">Creative Design</span>
+  </div>
+</div>
+
+<!-- ═══ SERVICES OVERVIEW ═══ -->
+<section class="section" id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-eyebrow reveal">What We Do</div>
+      <h2 class="section-title reveal">Six pillars of your <em>digital growth</em></h2>
+    </div>
+    <p class="section-body reveal">From a single landing page to a fully autonomous AI agent ecosystem — we deliver end-to-end digital solutions tailored for modern organisations and educational institutions. Tap any pillar for the full breakdown.</p>
+  </div>
+
+  <div class="services-grid">
+
+    <div class="service-card wide reveal" style="--accent:var(--gold)">
+      <div class="wide-left">
+        <div class="card-num">01 / WEBSITE CREATION</div>
+        <div class="card-icon-wrap"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+        <h3 class="card-title">Stunning Websites That Convert</h3>
+        <p class="card-desc">We design and develop premium websites that don't just look beautiful — they perform. From landing pages to full-scale web applications, every pixel serves a purpose.</p>
+        <a href="#web" class="card-link">View Full Details <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="wide-right">
+        <ul class="card-features">
+          <li>Custom design & branding aligned to your identity</li>
+          <li>Responsive, mobile-first development</li>
+          <li>SEO-optimised architecture from day one</li>
+          <li>CMS integration (WordPress, Webflow, custom)</li>
+          <li>Speed & Core Web Vitals optimisation</li>
+          <li>Ongoing maintenance & hosting support</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="service-card reveal" style="--accent:var(--teal)">
+      <div class="card-num">02 / LMS ADMINISTRATION</div>
+      <div class="card-icon-wrap"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+      <h3 class="card-title">Expert LMS Administration</h3>
+      <p class="card-desc">Full-service Moodle and open-source LMS management — from setup and security hardening to daily admin and performance tuning.</p>
+      <ul class="card-features">
+        <li>Moodle setup, migration & hardening</li>
+        <li>User & course administration</li>
+        <li>Data backups & 24/7 monitoring</li>
+        <li>Analytics & reporting dashboards</li>
+      </ul>
+      <a href="#lms" class="card-link">View Full Details <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+
+    <div class="service-card reveal" style="--accent:var(--sky)">
+      <div class="card-num">03 / CUSTOMER SUPPORT</div>
+      <div class="card-icon-wrap"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+      <h3 class="card-title">Responsive Customer Support</h3>
+      <p class="card-desc">Seamless, human-first customer support delivered via chat, email, and voice — ensuring every client interaction builds loyalty.</p>
+      <ul class="card-features">
+        <li>Multi-channel support (chat, email, voice)</li>
+        <li>Help desk setup & management</li>
+        <li>SLA management & reporting</li>
+        <li>Ticketing system integration</li>
+      </ul>
+      <a href="#support" class="card-link">View Full Details <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+
+    <div class="service-card reveal" style="--accent:var(--cyan)">
+      <div class="card-num">04 / AGENTIC AI</div>
+      <div class="card-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg></div>
+      <h3 class="card-title">Autonomous Agentic AI</h3>
+      <p class="card-desc">Deploy intelligent AI agents that think, plan, and act — automating complex workflows so your team can focus on what truly matters.</p>
+      <ul class="card-features">
+        <li>Custom AI agent architecture & deployment</li>
+        <li>Workflow automation & integration</li>
+        <li>Natural language interfaces</li>
+        <li>LLM fine-tuning & RAG pipelines</li>
+      </ul>
+      <a href="#ai" class="card-link">View Full Details <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+
+    <div class="service-card reveal" style="--accent:var(--fire)">
+      <div class="card-num">05 / LEAD GENERATION</div>
+      <div class="card-icon-wrap"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <h3 class="card-title">Precision Lead Generation</h3>
+      <p class="card-desc">Data-driven strategies that attract, qualify, and convert your ideal customers — filling your pipeline with opportunities that close.</p>
+      <ul class="card-features">
+        <li>Outbound & inbound campaign strategy</li>
+        <li>SEO, content & paid acquisition</li>
+        <li>CRM integration & nurture sequences</li>
+        <li>Conversion optimisation & A/B testing</li>
+      </ul>
+      <a href="#leadgen" class="card-link">View Full Details <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+
+    <div class="service-card reveal" style="--accent:var(--violet)">
+      <div class="card-num">06 / CREATIVE DESIGN</div>
+      <div class="card-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.5-.7 1.5-1.5 0-.4-.1-.7-.4-1-.2-.3-.4-.6-.4-1 0-.8.7-1.5 1.5-1.5H16c3.3 0 6-2.7 6-6 0-4.9-4.5-9-10-9z"/></svg></div>
+      <h3 class="card-title">Creative Design Studio</h3>
+      <p class="card-desc">Bold visuals that build brands — graphic design, video editing, logos, UI/UX, and full identity systems that stop the scroll.</p>
+      <ul class="card-features">
+        <li>Graphic design & social content</li>
+        <li>Video editing & motion graphics</li>
+        <li>Logo & brand identity systems</li>
+        <li>UI/UX design for web and apps</li>
+      </ul>
+      <a href="#design" class="card-link">View Full Details <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section class="section" id="about">
+  <div class="story-section">
+    <div class="story-visual">
+      <div class="story-box-main reveal">
+        <div class="big-stat">100%</div>
+        <div class="big-stat-label">Security-First Philosophy</div>
+        <div class="story-stats">
+          <div class="story-stat"><div class="story-stat-num">24/7</div><div class="story-stat-label">Support Coverage</div></div>
+          <div class="story-stat"><div class="story-stat-num">6+</div><div class="story-stat-label">Core Services</div></div>
+          <div class="story-stat"><div class="story-stat-num">0</div><div class="story-stat-label">Downtime Tolerance</div></div>
+          <div class="story-stat"><div class="story-stat-num">∞</div><div class="story-stat-label">Scalability</div></div>
+        </div>
+      </div>
+      <div class="story-box-accent reveal">
+        <p>"Your success becomes<br>our track record."</p>
+      </div>
+    </div>
+    <div class="story-text">
+      <div class="section-eyebrow reveal">Our Story</div>
+      <h2 class="section-title reveal">Built to power <em>digital futures</em></h2>
+      <p class="reveal">EduSecure Solutions was founded with a singular conviction: that organisations deserve digital partnerships built on trust, transparency, and measurable results.</p>
+      <p class="reveal">We combine cutting-edge technology with deep domain expertise across web development, educational technology, AI, growth marketing, and creative design — giving you a single, accountable partner for your entire digital journey.</p>
+      <ul class="pillar-list reveal">
+        <li class="pillar"><span class="pillar-dot"></span><span>Security-first in every engagement</span></li>
+        <li class="pillar"><span class="pillar-dot"></span><span>Transparent communication at every step</span></li>
+        <li class="pillar"><span class="pillar-dot"></span><span>Rapid iteration, never slow bureaucracy</span></li>
+        <li class="pillar"><span class="pillar-dot"></span><span>Budget-aligned solutions without compromise</span></li>
+        <li class="pillar"><span class="pillar-dot"></span><span>Long-term partnership over one-time projects</span></li>
+      </ul>
+      <div class="reveal">
+        <a href="#contact" class="btn-primary">
+          Start the Conversation
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     01 · WEBSITE CREATION — DEEP DIVE
+═══════════════════════════════════════════════════════ -->
+<section class="svc-section" id="web" style="--accent:var(--gold); --accent2:var(--gold2)">
+  <div class="svc-inner">
+
+    <div class="svc-banner">
+      <div>
+        <div class="svc-kicker">01 · End-to-End Website Creation</div>
+        <h1>We Build Websites <em>That Convert</em> & Captivate</h1>
+        <p class="svc-banner-desc">From strategy and design to development, SEO, and launch — EduSecure delivers high-performance websites for startups, institutions, and enterprises. Your digital presence, perfected.</p>
+        <div class="svc-actions">
+          <a href="#web-pricing" class="svc-btn">See Pricing <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="#contact" class="svc-btn-out">Book Free Consult</a>
+        </div>
+      </div>
+      <div class="svc-panel reveal">
+        <div class="svc-panel-label"><span class="live-dot"></span>WHAT YOU GET</div>
+        <ul class="svc-panel-list">
+          <li><span class="b"></span>100 performance score, sub-1s load time</li>
+          <li><span class="b"></span>A+ SEO grade out of the box</li>
+          <li><span class="b"></span>HTTPS, hardened CMS, vulnerability scanning</li>
+          <li><span class="b"></span>Custom design — never a template</li>
+        </ul>
+        <div class="svc-panel-stats">
+          <div class="svc-panel-stat"><div class="n">+67%</div><div class="l">Avg. Conversion Lift</div></div>
+          <div class="svc-panel-stat"><div class="n">3–6 wks</div><div class="l">Avg. Delivery</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-head-row">
+      <div class="svc-head reveal">
+        <h2>Our end-to-end <em>creation process</em></h2>
+        <p>Every website we build follows a rigorous, transparent process — no surprises, no missed deadlines. Just clear progress from kickoff to launch.</p>
+      </div>
+      <div class="svc-head-aside reveal">HTTPS, hardened CMS config, vulnerability scanning, and regular backups are standard on every project — not add-ons.</div>
+    </div>
+    <div class="timeline2 reveal" style="margin-bottom:5rem;">
+      <div class="tl2-item"><div class="tl2-num">01</div><div class="tl2-content"><h4>Discovery & Strategy</h4><p>We begin by understanding your brand, goals, audience, and competitive landscape. Every decision downstream is rooted in this foundation.</p><div class="tl2-tags"><span>Stakeholder interviews</span><span>Competitor audit</span><span>Goals & KPIs</span></div></div></div>
+      <div class="tl2-item"><div class="tl2-num">02</div><div class="tl2-content"><h4>Wireframes & Architecture</h4><p>We map the full site structure and user journeys before a single design element is created. Clarity of architecture is the secret to great UX.</p><div class="tl2-tags"><span>Sitemap</span><span>Wireframes</span><span>User flows</span><span>CTA strategy</span></div></div></div>
+      <div class="tl2-item"><div class="tl2-num">03</div><div class="tl2-content"><h4>Design System & UI</h4><p>We craft a bespoke visual identity system — typography, color, spacing, components — and design every page with pixel-perfect precision.</p><div class="tl2-tags"><span>Brand alignment</span><span>Design system</span><span>Responsive UI</span></div></div></div>
+      <div class="tl2-item"><div class="tl2-num">04</div><div class="tl2-content"><h4>Development & CMS Build</h4><p>Clean, semantic code meets a powerful CMS setup so your team can manage content without needing a developer for every change.</p><div class="tl2-tags"><span>HTML/CSS/JS</span><span>WordPress / Custom</span><span>API integrations</span></div></div></div>
+      <div class="tl2-item"><div class="tl2-num">05</div><div class="tl2-content"><h4>SEO, Testing & QA</h4><p>Every page is optimised for search engines and tested across devices, browsers, and screen sizes before it ever goes live.</p><div class="tl2-tags"><span>On-page SEO</span><span>Core Web Vitals</span><span>Cross-browser QA</span></div></div></div>
+      <div class="tl2-item"><div class="tl2-num">06</div><div class="tl2-content"><h4>Launch & Ongoing Support</h4><p>We handle deployment, DNS, SSL, and a smooth go-live. Post-launch, we're on hand for updates, monitoring, and continuous improvements.</p><div class="tl2-tags"><span>Deployment</span><span>Monitoring</span><span>Ongoing support</span></div></div></div>
+    </div>
+
+    <div class="svc-head reveal">
+      <h2>Websites for <em>every ambition</em></h2>
+      <p>Whether you're launching a startup, running a university, or scaling an enterprise — we've built for you before.</p>
+    </div>
+    <div class="detail-grid" style="margin-bottom:5rem;">
+      <div class="detail-card reveal">
+        <div class="detail-icon"><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+        <h4>Startups & SMBs</h4>
+        <p>Move fast, look like a leader. We help early-stage businesses build credibility and convert visitors into customers from day one.</p>
+        <div class="detail-tags"><span class="detail-tag">MVP-ready</span><span class="detail-tag">Investor-ready</span><span class="detail-tag">Budget-conscious</span></div>
+      </div>
+      <div class="detail-card reveal">
+        <div class="detail-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+        <h4>Educational Institutions</h4>
+        <p>Schools, universities, and e-learning providers deserve digital experiences as sophisticated as the education they deliver.</p>
+        <div class="detail-tags"><span class="detail-tag">LMS integration</span><span class="detail-tag">Student portals</span><span class="detail-tag">WCAG compliant</span></div>
+      </div>
+      <div class="detail-card reveal">
+        <div class="detail-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <h4>Enterprises & Large Orgs</h4>
+        <p>Complex multi-stakeholder builds handled with rigour, governance, and enterprise-grade security — on time and on spec.</p>
+        <div class="detail-tags"><span class="detail-tag">Multi-region</span><span class="detail-tag">SSO & compliance</span><span class="detail-tag">Dedicated PM</span></div>
+      </div>
+    </div>
+
+    <div class="svc-head reveal" id="web-pricing">
+      <h2>Transparent <em>pricing</em></h2>
+      <p>Every project is scoped individually, but here's a guide to what you can expect. All plans include our full process — strategy to launch.</p>
+    </div>
+    <div class="pricing-grid2 reveal">
+      <div class="price-card">
+        <div class="price-tier">Starter</div>
+        <div class="price-val"><small>From </small>₹49k</div>
+        <div class="price-cycle">One-time project fee</div>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Up to 5 pages</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Custom design</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Mobile responsive</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Basic SEO setup</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>30-day support</li>
+        </ul>
+        <a href="#contact" class="price-cta">Get a Quote</a>
+      </div>
+      <div class="price-card feat">
+        <div class="price-badge">Most Popular</div>
+        <div class="price-tier">Growth</div>
+        <div class="price-val"><small>From </small>₹1.2L</div>
+        <div class="price-cycle">One-time project fee</div>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Up to 15 pages</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Full design system + animations</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Full SEO + GA4 setup</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Lead gen forms + CRM</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>60-day support</li>
+        </ul>
+        <a href="#contact" class="price-cta">Get a Quote</a>
+      </div>
+      <div class="price-card">
+        <div class="price-tier">Enterprise</div>
+        <div class="price-val">Custom</div>
+        <div class="price-cycle">Scoped to your needs</div>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Unlimited pages</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Multi-language support</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>LMS / portal integration</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>SSO & compliance</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Ongoing retainer option</li>
+        </ul>
+        <a href="#contact" class="price-cta">Talk to Us</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     02 · LMS ADMINISTRATION — DEEP DIVE
+═══════════════════════════════════════════════════════ -->
+<section class="svc-section alt" id="lms" style="--accent:var(--teal); --accent2:var(--teal2)">
+  <div class="svc-inner">
+
+    <div class="svc-banner">
+      <div>
+        <div class="svc-kicker">02 · End-to-End LMS Creation</div>
+        <h1>Launch Your <em>Learning</em> Platform</h1>
+        <p class="svc-banner-desc">From architecture and customisation to security, deployment and ongoing management — we build powerful, scalable Learning Management Systems that your students and educators will love.</p>
+        <div class="svc-actions">
+          <a href="#lms-pricing" class="svc-btn">See Pricing <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="#contact" class="svc-btn-out">Book Discovery Call</a>
+        </div>
+      </div>
+      <div class="svc-panel reveal">
+        <div class="svc-panel-label"><span class="live-dot"></span>PLATFORM SNAPSHOT</div>
+        <ul class="svc-panel-list">
+          <li><span class="b"></span>Moodle 4.x setup with security hardening</li>
+          <li><span class="b"></span>SCORM, xAPI & H5P content ready</li>
+          <li><span class="b"></span>SSO / LDAP, Redis caching, CDN</li>
+          <li><span class="b"></span>Certificates, badges & leaderboards</li>
+        </ul>
+        <div class="svc-panel-stats">
+          <div class="svc-panel-stat"><div class="n">2,400+</div><div class="l">Active Learners</div></div>
+          <div class="svc-panel-stat"><div class="n">4–8 wks</div><div class="l">Avg. Delivery</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-head reveal">
+      <h2>Everything your <em>LMS needs</em></h2>
+      <p>A fully managed, end-to-end LMS build — covering platform setup, custom theming, plugin configuration, content migration, user management, and post-launch support. Nothing left to chance.</p>
+    </div>
+    <div class="detail-grid" style="margin-bottom:5rem;">
+      <div class="detail-card wide reveal">
+        <div class="detail-num">01 — Core Platform</div>
+        <div class="detail-icon"><svg viewBox="0 0 24 24"><path d="M12 2L4 6v6c0 5.5 3.5 10.7 8 12 4.5-1.3 8-6.5 8-12V6l-8-4z"/></svg></div>
+        <h4>Moodle Setup & Security Hardening</h4>
+        <p>We install, configure, and harden your Moodle instance from scratch. Every setting is reviewed, every permission locked down. Vulnerability scanning and SSL are standard — not extras. Redis caching, CDN integration, and database tuning ensure your platform scales from 100 to 100,000 users.</p>
+        <div class="detail-tags"><span class="detail-tag">Moodle 4.x</span><span class="detail-tag">SSL/TLS</span><span class="detail-tag">Redis Cache</span><span class="detail-tag">CDN</span></div>
+      </div>
+      <div class="detail-card reveal">
+        <div class="detail-num">02</div>
+        <div class="detail-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+        <h4>Custom Theme & Branding</h4>
+        <p>Bespoke Moodle themes that reflect your institution's identity — from colours and logos to full custom dashboards.</p>
+        <div class="detail-tags"><span class="detail-tag">Boost Theme</span><span class="detail-tag">Custom CSS/JS</span></div>
+      </div>
+      <div class="detail-card reveal">
+        <div class="detail-num">03</div>
+        <div class="detail-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+        <h4>Course & Content Setup</h4>
+        <p>We build your course catalogue from scratch — SCORM packages, video hosting, quizzes, assignments, rubrics and grading.</p>
+        <div class="detail-tags"><span class="detail-tag">SCORM</span><span class="detail-tag">xAPI</span><span class="detail-tag">H5P</span></div>
+      </div>
+      <div class="detail-card reveal">
+        <div class="detail-num">04</div>
+        <div class="detail-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+        <h4>User Roles & Enrolment</h4>
+        <p>Students, instructors, managers, guests — all configured with the right access levels, SSO integration, and enrolment workflows.</p>
+        <div class="detail-tags"><span class="detail-tag">SSO / LDAP</span><span class="detail-tag">OAuth 2.0</span></div>
+      </div>
+      <div class="detail-card reveal">
+        <div class="detail-num">05</div>
+        <div class="detail-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
+        <h4>Analytics & Reporting</h4>
+        <p>Track learner progress, completion rates, quiz scores, and time-on-task with custom Moodle reports and dashboards.</p>
+        <div class="detail-tags"><span class="detail-tag">Custom Reports</span><span class="detail-tag">Insights</span></div>
+      </div>
+      <div class="detail-card reveal">
+        <div class="detail-num">06</div>
+        <div class="detail-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+        <h4>Certificates & Gamification</h4>
+        <p>Auto-issued certificates, digital badges, leaderboards, and completion rewards — configurable per course or site-wide.</p>
+        <div class="detail-tags"><span class="detail-tag">Certificates</span><span class="detail-tag">Open Badges</span></div>
+      </div>
+    </div>
+
+    <div class="svc-head-row">
+      <div class="svc-head reveal"><h2>From brief to <em>launch</em></h2><p>Six carefully sequenced phases ensure your LMS arrives on time, on brief, and built to last.</p></div>
+      <div class="svc-head-aside reveal">Avg. delivery 4–8 weeks · Weekly progress updates · Staged review & approval at every phase.</div>
+    </div>
+    <div class="timeline2 reveal" style="margin-bottom:5rem;">
+      <div class="tl2-item"><div class="tl2-num">01</div><div class="tl2-content"><div class="tl2-meta">Week 1</div><h4>Discovery & Requirements Mapping</h4><p>Deep-dive into your institution's goals, user personas, existing content, and technical constraints.</p><div class="tl2-tags"><span>Stakeholder workshops</span><span>Tech audit</span></div></div></div>
+      <div class="tl2-item"><div class="tl2-num">02</div><div class="tl2-content"><div class="tl2-meta">Week 1–2</div><h4>Server Setup & Core Installation</h4><p>Provision and harden a dedicated or cloud server, install Moodle, configure database, mail and file systems.</p><div class="tl2-tags"><span>Linux server</span><span>SSL / firewall</span></div></div></div>
+      <div class="tl2-item"><div class="tl2-num">03</div><div class="tl2-content"><div class="tl2-meta">Week 2–4</div><h4>Theme Design & UI Customisation</h4><p>Custom-designed Moodle theme aligned to your brand — dashboards, colour systems, typography, responsive mobile views.</p><div class="tl2-tags"><span>Custom theme</span><span>Responsive</span></div></div></div>
+      <div class="tl2-item"><div class="tl2-num">04</div><div class="tl2-content"><div class="tl2-meta">Week 3–5</div><h4>Plugin Configuration & Integrations</h4><p>Install, configure, and test Zoom / BigBlueButton for live classes, payment gateways, SCORM players, and SSO providers.</p><div class="tl2-tags"><span>Zoom / BBB</span><span>Payment GW</span></div></div></div>
+      <div class="tl2-item"><div class="tl2-num">05</div><div class="tl2-content"><div class="tl2-meta">Week 5–7</div><h4>Content Migration & Course Build</h4><p>Migrate existing content, build course templates, set up categories, enrolment rules, grading scales, and certificates.</p><div class="tl2-tags"><span>Content import</span><span>UAT</span></div></div></div>
+      <div class="tl2-item"><div class="tl2-num">06</div><div class="tl2-content"><div class="tl2-meta">Week 7–8</div><h4>Go-Live & Handover</h4><p>Final QA, staff training, and a monitored go-live with a documented handover — plus post-launch support window.</p><div class="tl2-tags"><span>Training</span><span>Go-live support</span></div></div></div>
+    </div>
+
+    <div class="svc-head reveal"><h2>Proven in <em>production</em></h2><p>A sample of institutions and platforms we've built and secured.</p></div>
+    <div class="case-grid2 reveal" style="margin-bottom:5rem;">
+      <div class="case-card2">
+        <div class="case-cat2">Corporate Training</div>
+        <h4>FinEdge Corp — Compliance Training Portal</h4>
+        <p>Multi-tenant Moodle platform serving 8 regional offices. SCORM-based compliance courses, automated certification, real-time HR reporting.</p>
+        <div class="case-metrics2"><div><div class="n">100%</div><div class="l">Compliance Rate</div></div><div><div class="n">−62%</div><div class="l">Admin Overhead</div></div></div>
+      </div>
+      <div class="case-card2">
+        <div class="case-cat2">EdTech Startup</div>
+        <h4>LearnGlobal — Paid Course Marketplace</h4>
+        <p>Public-facing Moodle platform with Stripe payments, affiliate system, and a branded mobile app wrapper for iOS and Android.</p>
+        <div class="case-metrics2"><div><div class="n">12k</div><div class="l">Users Month 1</div></div><div><div class="n">₹18L</div><div class="l">Revenue in 90 Days</div></div></div>
+      </div>
+      <div class="case-card2">
+        <div class="case-cat2">Higher Education</div>
+        <h4>Multi-Campus University Rollout</h4>
+        <p>Single sign-on across departments, unified gradebook, and a custom analytics layer for retention tracking.</p>
+        <div class="case-metrics2"><div><div class="n">5,000+</div><div class="l">Users Onboarded</div></div><div><div class="n">99.9%</div><div class="l">Uptime</div></div></div>
+      </div>
+    </div>
+
+    <div class="svc-head reveal" id="lms-pricing"><h2>Clear, <em>honest</em> pricing</h2><p>All packages include our full process from discovery to launch. No hidden fees, no surprise invoices.</p></div>
+    <div class="pricing-grid2 reveal">
+      <div class="price-card">
+        <div class="price-tier">Starter LMS</div>
+        <div class="price-val">₹75k</div>
+        <div class="price-cycle">One-time setup fee</div>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Moodle setup & hardening</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Basic custom theme</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Up to 10 courses, 500 users</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>SSL, backups, monitoring</li>
+          <li class="off"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>SSO / LDAP integration</li>
+        </ul>
+        <a href="#contact" class="price-cta">Get a Quote</a>
+      </div>
+      <div class="price-card feat">
+        <div class="price-badge">Most Popular</div>
+        <div class="price-tier">Institution</div>
+        <div class="price-val">₹1.8L</div>
+        <div class="price-cycle">One-time setup fee</div>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Full setup + custom theme</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Unlimited courses, 5,000 users</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>SSO / LDAP integration</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Redis, CDN, performance tuning</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>60-day post-launch support</li>
+        </ul>
+        <a href="#contact" class="price-cta">Get a Quote</a>
+      </div>
+      <div class="price-card">
+        <div class="price-tier">Enterprise</div>
+        <div class="price-val">Custom</div>
+        <div class="price-cycle">Scoped per project</div>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Multi-tenant architecture</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>100,000+ user scale</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Payment gateway + commerce</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Mobile app wrapper (iOS/Android)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Dedicated project manager</li>
+        </ul>
+        <a href="#contact" class="price-cta">Talk to Us</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     03 · CUSTOMER SUPPORT — DEEP DIVE
+═══════════════════════════════════════════════════════ -->
+<section class="svc-section" id="support" style="--accent:var(--sky); --accent2:var(--sky2)">
+  <div class="svc-inner">
+
+    <div class="svc-banner">
+      <div>
+        <div class="svc-kicker">03 · End-to-End Customer Support</div>
+        <h1>Every Customer <em>Heard, Helped</em> & Delighted</h1>
+        <p class="svc-banner-desc">Multi-channel support that works around the clock — live chat, email, voice, and helpdesk management. We're the friendly, expert face of your brand so you can focus on building it.</p>
+        <div class="svc-actions">
+          <a href="#support-pricing" class="svc-btn">See Plans <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="#contact" class="svc-btn-out">Start Free Trial</a>
+        </div>
+      </div>
+      <div class="svc-panel reveal">
+        <div class="svc-panel-label"><span class="live-dot"></span>SUPPORT SNAPSHOT</div>
+        <div class="svc-panel-stats">
+          <div class="svc-panel-stat"><div class="n">&lt;45s</div><div class="l">Avg First Reply</div></div>
+          <div class="svc-panel-stat"><div class="n">98%</div><div class="l">CSAT Score</div></div>
+          <div class="svc-panel-stat"><div class="n">24/7</div><div class="l">Coverage</div></div>
+          <div class="svc-panel-stat"><div class="n">12+</div><div class="l">Languages</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-head reveal"><h2>Meet your customers <em>everywhere they are</em></h2><p>We manage every channel your customers use — from instant live chat to detailed email threads and phone calls — with the same expert, empathetic touch.</p></div>
+    <div class="detail-grid" style="margin-bottom:5rem;">
+      <div class="detail-card reveal"><div class="detail-num">01</div><div class="detail-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h4>Live Chat</h4><p>Real-time, on-site chat support that converts visitors and solves problems before they escalate. Average response under 45 seconds.</p><div class="detail-tags"><span class="detail-tag">Real-time</span><span class="detail-tag">Website widget</span></div></div>
+      <div class="detail-card reveal"><div class="detail-num">02</div><div class="detail-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><h4>Email Support</h4><p>Professionally managed email queues with templated responses, escalation workflows, and guaranteed SLA adherence.</p><div class="detail-tags"><span class="detail-tag">SLA guaranteed</span><span class="detail-tag">Ticketing</span></div></div>
+      <div class="detail-card reveal"><div class="detail-num">03</div><div class="detail-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12"/></svg></div><h4>Voice & Phone</h4><p>Warm, professional phone support staffed by trained agents who know your product inside-out. Call recording and QA included.</p><div class="detail-tags"><span class="detail-tag">Inbound</span><span class="detail-tag">Outbound</span></div></div>
+      <div class="detail-card reveal"><div class="detail-num">04</div><div class="detail-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/></svg></div><h4>Helpdesk Management</h4><p>Full setup and management of your helpdesk platform — Freshdesk, Zendesk, or custom — with workflows and automation configured.</p><div class="detail-tags"><span class="detail-tag">Zendesk</span><span class="detail-tag">Freshdesk</span></div></div>
+      <div class="detail-card reveal"><div class="detail-num">05</div><div class="detail-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg></div><h4>Social Media Support</h4><p>Monitoring and responding to DMs, mentions, and comments across Instagram, LinkedIn, Twitter and Facebook in brand voice.</p><div class="detail-tags"><span class="detail-tag">Instagram</span><span class="detail-tag">LinkedIn</span></div></div>
+      <div class="detail-card reveal"><div class="detail-num">06</div><div class="detail-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><h4>Knowledge Base</h4><p>We build, write, and maintain a self-service help centre that deflects up to 40% of incoming tickets.</p><div class="detail-tags"><span class="detail-tag">FAQ writing</span><span class="detail-tag">Video guides</span></div></div>
+    </div>
+
+    <div class="svc-head reveal"><h2>What's <em>included</em> in every plan</h2><p>No hidden add-ons. From day one, every engagement comes with the full stack of tools, processes, and people to handle your customers right.</p></div>
+    <div class="detail-grid" style="grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin-bottom:5rem;">
+      <div class="detail-card reveal"><div class="detail-num">01</div><h4>Dedicated Support Team</h4><p>Trained agents who know your product, brand guidelines, and escalation paths.</p></div>
+      <div class="detail-card reveal"><div class="detail-num">02</div><h4>SLA Management & Reporting</h4><p>Custom SLA tiers monitored, with weekly CSAT and resolution-rate reports.</p></div>
+      <div class="detail-card reveal"><div class="detail-num">03</div><h4>Helpdesk Setup & Migration</h4><p>Workflows, macros, auto-routing, and integrations configured from scratch or migrated.</p></div>
+      <div class="detail-card reveal"><div class="detail-num">04</div><h4>Quality Assurance</h4><p>Every interaction is scored against a QA rubric; underperformance is coached within 48 hours.</p></div>
+      <div class="detail-card reveal"><div class="detail-num">05</div><h4>Escalation Workflows</h4><p>Complex issues escalated via a documented, tested escalation matrix.</p></div>
+      <div class="detail-card reveal"><div class="detail-num">06</div><h4>Onboarding & Training</h4><p>A two-week structured onboarding on product, tone, FAQs, and edge cases before go-live.</p></div>
+      <div class="detail-card reveal"><div class="detail-num">07</div><h4>CRM Integration</h4><p>Salesforce, HubSpot, or any CRM connected so every interaction enriches customer data.</p></div>
+      <div class="detail-card reveal"><div class="detail-num">08</div><h4>CSAT & NPS Surveys</h4><p>Automated post-interaction surveys with monthly analysis and recommendations.</p></div>
+    </div>
+
+    <div class="svc-head-row">
+      <div class="svc-head reveal"><h2>Live in <em>14 days,</em> fully operational</h2><p>A streamlined onboarding designed to get your customers expertly supported as fast as possible.</p></div>
+    </div>
+    <div class="timeline2 reveal" style="margin-bottom:5rem;">
+      <div class="tl2-item"><div class="tl2-num">01</div><div class="tl2-content"><div class="tl2-meta">Week 1</div><h4>Discovery & Audit</h4><p>We audit your existing support setup, map ticket volume, identify pain points, and document your FAQ landscape.</p></div></div>
+      <div class="tl2-item"><div class="tl2-num">02</div><div class="tl2-content"><div class="tl2-meta">Week 1</div><h4>Playbook Build</h4><p>We write your brand tone guide, response templates, escalation matrix, and FAQ documentation.</p></div></div>
+      <div class="tl2-item"><div class="tl2-num">03</div><div class="tl2-content"><div class="tl2-meta">Week 2</div><h4>Agent Training</h4><p>Your dedicated agents are trained on product, tone, tooling, and edge cases — with shadow sessions before go-live.</p></div></div>
+      <div class="tl2-item"><div class="tl2-num">04</div><div class="tl2-content"><div class="tl2-meta">Week 2</div><h4>Go Live & Optimise</h4><p>We launch with a soft start, monitor every interaction closely, and optimise weekly based on CSAT data.</p></div></div>
+    </div>
+
+    <div class="svc-head reveal"><h2>The numbers behind <em>our support</em></h2><p>We measure everything — so you always know exactly how your customers are being served.</p></div>
+    <div class="stats-strip2 reveal" style="margin-bottom:2rem;">
+      <div class="stat-box2"><div class="n">&lt;45s</div><div class="l">Avg. First Response</div><div class="d">Live chat initial reply across all channels and time zones.</div></div>
+      <div class="stat-box2"><div class="n">98%</div><div class="l">Customer Satisfaction</div><div class="d">CSAT score maintained across all managed accounts.</div></div>
+      <div class="stat-box2"><div class="n">87%</div><div class="l">First Contact Resolution</div><div class="d">Issues resolved without a follow-up or escalation.</div></div>
+      <div class="stat-box2"><div class="n">40%</div><div class="l">Ticket Deflection</div><div class="d">Reduction in tickets after knowledge base deployment.</div></div>
+    </div>
+    <div class="testi2 reveal" style="margin-bottom:5rem;">
+      <p>"EduSecure transformed how we handle student support. Our CSAT went from 71% to 97% in six weeks. Remarkable team, remarkable results."</p>
+      <div class="attr">Head of Student Experience — LearnPath Academy</div>
+    </div>
+
+    <div class="svc-head reveal" id="support-pricing"><h2>Flexible plans, <em>zero surprises</em></h2><p>Whether you need 8-hour coverage or a full 24/7 global operation, we have a plan built for your scale.</p></div>
+    <div class="pricing-grid2 reveal" style="margin-bottom:5rem;">
+      <div class="price-card">
+        <div class="price-tier">Essential</div>
+        <div class="price-val"><small>From </small>₹24k</div>
+        <div class="price-cycle">per month</div>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Business hours coverage (8h)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Email + live chat</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>1 dedicated agent</li>
+          <li class="off"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Voice support</li>
+        </ul>
+        <a href="#contact" class="price-cta">Get Started</a>
+      </div>
+      <div class="price-card feat">
+        <div class="price-badge">Most Popular</div>
+        <div class="price-tier">Professional</div>
+        <div class="price-val"><small>From </small>₹58k</div>
+        <div class="price-cycle">per month</div>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>16-hour daily coverage</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>All channels incl. voice</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>3 dedicated agents</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Knowledge base + CRM integration</li>
+        </ul>
+        <a href="#contact" class="price-cta">Get Started</a>
+      </div>
+      <div class="price-card">
+        <div class="price-tier">Enterprise</div>
+        <div class="price-val">Custom</div>
+        <div class="price-cycle">Scoped to your needs</div>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>24/7 global coverage</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Dedicated team pod</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Multi-language support</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Dedicated account manager</li>
+        </ul>
+        <a href="#contact" class="price-cta">Talk to Us</a>
+      </div>
+    </div>
+
+    <div class="svc-head reveal"><h2>Everything you <em>need to know</em></h2><p>Can't find what you're looking for? Reach us on live chat — we'll answer in under 45 seconds.</p></div>
+    <div class="faq-list2 reveal">
+      <div class="faq-item2">
+        <div class="faq-q2">How quickly can you go live with support for my business?<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a2"><p>Most clients are live within 14 days of signing. Our structured onboarding covers discovery, playbook creation, agent training, and a soft launch — all in two weeks.</p></div>
+      </div>
+      <div class="faq-item2">
+        <div class="faq-q2">Will agents sound like they're from my company?<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a2"><p>Absolutely. We build a detailed brand tone guide and train agents to write and speak in your voice. Customers typically don't know they're interacting with an outsourced team.</p></div>
+      </div>
+      <div class="faq-item2">
+        <div class="faq-q2">Which helpdesk platforms do you support?<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a2"><p>We work with Zendesk, Freshdesk, Intercom, HubSpot Service Hub, Zoho Desk, and custom-built systems, and recommend the best fit for your volume and workflow.</p></div>
+      </div>
+      <div class="faq-item2">
+        <div class="faq-q2">How do you handle sensitive customer data?<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a2"><p>All agents operate under strict NDAs. We follow GDPR-aligned data handling practices and can work within your existing security framework.</p></div>
+      </div>
+      <div class="faq-item2">
+        <div class="faq-q2">Can I scale my support team up or down?<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a2"><p>Yes — all plans allow scaling. For a launch, seasonal spike, or growth phase, we can bring additional agents online with 5 business days' notice.</p></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     04 · AGENTIC AI — DEEP DIVE
+═══════════════════════════════════════════════════════ -->
+<section class="svc-section alt" id="ai" style="--accent:var(--cyan); --accent2:var(--cyan2)">
+  <div class="svc-inner">
+
+    <div class="svc-banner">
+      <div>
+        <div class="svc-kicker">04 · Autonomous Agentic AI</div>
+        <h1>Agents <em>That Think</em> & Act</h1>
+        <p class="svc-banner-desc">Deploy autonomous AI agents that plan, reason, and execute complex multi-step workflows — without human babysitting. Automate anything. Scale everything. We build, deploy, and manage your entire agentic AI stack.</p>
+        <div class="svc-actions">
+          <a href="#ai-pricing" class="svc-btn">See Deployment Tiers <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="#contact" class="svc-btn-out">Request a Demo</a>
+        </div>
+      </div>
+      <div class="svc-panel reveal">
+        <div class="svc-panel-label"><span class="live-dot"></span>LIVE AGENT ORCHESTRATOR</div>
+        <ul class="svc-panel-list">
+          <li><span class="b"></span>Planner → Executor → Memory → Reporter pipeline</li>
+          <li><span class="b"></span>140+ tool integrations, model-agnostic</li>
+          <li><span class="b"></span>Full trace logging & guardrails</li>
+        </ul>
+        <div class="svc-panel-stats">
+          <div class="svc-panel-stat"><div class="n">847</div><div class="l">Tasks / Hour</div></div>
+          <div class="svc-panel-stat"><div class="n">340ms</div><div class="l">Avg Latency</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-head reveal"><h2>What <em>agents</em> can do for you</h2><p>Agentic AI isn't automation. It's intelligence. Our agents don't just follow rules — they reason, adapt, use tools, and complete goals the way a brilliant team member would.</p></div>
+    <div class="detail-grid" style="margin-bottom:5rem;">
+      <div class="detail-card reveal"><div class="detail-num">Case 01</div><h4>Research Agent</h4><p>Deep-research agents that browse, read, synthesise, and produce structured reports across thousands of sources — in minutes, not weeks.</p><div class="detail-tags"><span class="detail-tag">Web browsing</span><span class="detail-tag">RAG</span></div></div>
+      <div class="detail-card reveal"><div class="detail-num">Case 02</div><h4>Outreach Agent</h4><p>Personalised email outreach at scale — agents that research prospects, craft hyper-personalised messages, and manage sales sequences.</p><div class="detail-tags"><span class="detail-tag">CRM sync</span><span class="detail-tag">Personalisation</span></div></div>
+      <div class="detail-card reveal"><div class="detail-num">Case 03</div><h4>Data Agent</h4><p>Agents that pull data from spreadsheets, APIs, and databases, clean it, analyse it, and push insights to dashboards automatically.</p><div class="detail-tags"><span class="detail-tag">SQL</span><span class="detail-tag">Python execution</span></div></div>
+      <div class="detail-card reveal"><div class="detail-num">Case 04</div><h4>Support Agent</h4><p>Conversational AI agents that handle Tier-1 support independently — reading docs, executing actions, and escalating only what needs a human.</p><div class="detail-tags"><span class="detail-tag">Zendesk</span><span class="detail-tag">Tool use</span></div></div>
+      <div class="detail-card reveal"><div class="detail-num">Case 05</div><h4>Ops Agent</h4><p>Operations agents that monitor systems, trigger alerts, file tickets, and even resolve common incidents autonomously.</p><div class="detail-tags"><span class="detail-tag">PagerDuty</span><span class="detail-tag">Jira</span></div></div>
+      <div class="detail-card reveal"><div class="detail-num">Case 06</div><h4>Edu Agent</h4><p>Specialised agents for education — automated grading assistants, personalised learning paths, and LMS administration agents for Moodle.</p><div class="detail-tags"><span class="detail-tag">Moodle</span><span class="detail-tag">Personalisation</span></div></div>
+    </div>
+
+    <div class="svc-head reveal"><h2>What every <em>agent</em> gets</h2><p>Every agent we build comes with a full suite of cognitive and operational capabilities — not just a chat interface wrapped in a loop.</p></div>
+    <div class="detail-grid" style="grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin-bottom:5rem;">
+      <div class="detail-card reveal"><div class="detail-num">01</div><h4>Multi-Step Reasoning</h4><p>Agents that break goals into sub-tasks, plan execution order, reflect on results, and retry on failure.</p></div>
+      <div class="detail-card reveal"><div class="detail-num">02</div><h4>Tool Use & API Calls</h4><p>Native access to browsers, code executors, database connectors, and 140+ pre-built integrations.</p></div>
+      <div class="detail-card reveal"><div class="detail-num">03</div><h4>Long-Term Memory</h4><p>Persistent vector memory so agents remember context across sessions and personalise per user or org.</p></div>
+      <div class="detail-card reveal"><div class="detail-num">04</div><h4>Multi-Agent Orchestration</h4><p>Planner agents that delegate to specialised workers, with parallel execution and human-in-the-loop checkpoints.</p></div>
+      <div class="detail-card reveal"><div class="detail-num">05</div><h4>RAG & Knowledge Bases</h4><p>Retrieval-augmented generation grounded in your private documents, wikis, and databases.</p></div>
+      <div class="detail-card reveal"><div class="detail-num">06</div><h4>Observability & Guardrails</h4><p>Full trace logging, content safety filters, PII redaction, and rate limits built in.</p></div>
+      <div class="detail-card reveal"><div class="detail-num">07</div><h4>Model Agnostic</h4><p>Built on GPT-4o, Claude, Gemini, Mistral, or fine-tuned open-source models based on your requirements.</p></div>
+      <div class="detail-card reveal"><div class="detail-num">08</div><h4>Continuous Improvement</h4><p>Agents that learn from feedback loops — human ratings, outcome signals, and automated evals.</p></div>
+    </div>
+
+    <div class="svc-head reveal"><h2>From idea to <em>deployed agent</em></h2><p>A disciplined four-phase build, monitored end-to-end.</p></div>
+    <div class="timeline2 reveal" style="margin-bottom:5rem;">
+      <div class="tl2-item"><div class="tl2-num">01</div><div class="tl2-content"><h4>Scope & Design</h4><p>We map your workflow end-to-end, identify what's automatable, define agent goals and success metrics.</p><div class="tl2-tags"><span>Workflow audit</span><span>Architecture design</span></div></div></div>
+      <div class="tl2-item"><div class="tl2-num">02</div><div class="tl2-content"><h4>Build & Integrate</h4><p>We build your agent pipeline — prompts, tools, memory systems, orchestration logic — integrated with your data sources.</p><div class="tl2-tags"><span>RAG pipeline</span><span>API connectors</span></div></div></div>
+      <div class="tl2-item"><div class="tl2-num">03</div><div class="tl2-content"><h4>Evaluate & Harden</h4><p>Rigorous evals against real-world test cases. Guardrails configured. Latency and cost optimised.</p><div class="tl2-tags"><span>LLM evals</span><span>Red-teaming</span></div></div></div>
+      <div class="tl2-item"><div class="tl2-num">04</div><div class="tl2-content"><h4>Deploy & Monitor</h4><p>Production deployment with full observability — trace dashboards, alert rules, and weekly performance reviews.</p><div class="tl2-tags"><span>Prod deployment</span><span>Monitoring</span></div></div></div>
+    </div>
+
+    <div class="svc-head reveal"><h2>The impact <em>agents deliver</em></h2><p>Numbers from real deployments across research, sales, operations, and education workflows.</p></div>
+    <div class="stats-strip2 reveal" style="margin-bottom:5rem;">
+      <div class="stat-box2"><div class="n">10×</div><div class="l">Throughput Increase</div><div class="d">Tasks completed per agent vs. manual workflow.</div></div>
+      <div class="stat-box2"><div class="n">78%</div><div class="l">Cost Reduction</div><div class="d">Average operational cost saved vs. human-only execution.</div></div>
+      <div class="stat-box2"><div class="n">340ms</div><div class="l">Avg Response Time</div><div class="d">Agent-to-output latency across typical task types.</div></div>
+      <div class="stat-box2"><div class="n">99.9%</div><div class="l">Uptime SLA</div><div class="d">Production agent infrastructure availability guarantee.</div></div>
+    </div>
+
+    <div class="svc-head reveal" id="ai-pricing"><h2>Choose your <em>deployment</em></h2><p>Every plan includes fully managed agent infrastructure, monitoring, and optimisation. You focus on outcomes — we handle the stack.</p></div>
+    <div class="pricing-grid2 reveal">
+      <div class="price-card">
+        <div class="price-tier">Starter Agent</div>
+        <div class="price-val"><small>From </small>₹39k</div>
+        <div class="price-cycle">per month</div>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>1 custom AI agent</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Up to 5,000 tasks/month</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Basic RAG pipeline</li>
+          <li class="off"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Multi-agent orchestration</li>
+        </ul>
+        <a href="#contact" class="price-cta">Deploy Agent</a>
+      </div>
+      <div class="price-card feat">
+        <div class="price-badge">Most Powerful</div>
+        <div class="price-tier">Agent Squad</div>
+        <div class="price-val"><small>From </small>₹1.1L</div>
+        <div class="price-cycle">per month</div>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Up to 5 custom agents</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>50,000 tasks/month</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Multi-agent orchestration</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Real-time trace dashboard</li>
+        </ul>
+        <a href="#contact" class="price-cta">Deploy Squad</a>
+      </div>
+      <div class="price-card">
+        <div class="price-tier">Enterprise Fleet</div>
+        <div class="price-val">Custom</div>
+        <div class="price-cycle">Scoped deployment</div>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Unlimited agents & tasks</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Fine-tuned models</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>On-prem / VPC deployment</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Dedicated ML engineer</li>
+        </ul>
+        <a href="#contact" class="price-cta">Contact Us</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     05 · LEAD GENERATION — DEEP DIVE
+═══════════════════════════════════════════════════════ -->
+<section class="svc-section" id="leadgen" style="--accent:var(--fire); --accent2:var(--fire2)">
+  <div class="svc-inner">
+
+    <div class="svc-banner">
+      <div>
+        <div class="svc-kicker">05 · Lead Generation · End-to-End</div>
+        <h1>More <em>Leads.</em> More Revenue.</h1>
+        <p class="svc-banner-desc">We build and run full-funnel lead generation systems that attract the right prospects, qualify them automatically, and deliver them ready to close — so your sales team only talks to people who want to buy.</p>
+        <div class="svc-actions">
+          <a href="#leadgen-pricing" class="svc-btn">See Growth Plans <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="#contact" class="svc-btn-out">Get a Free Audit</a>
+        </div>
+      </div>
+      <div class="svc-panel reveal">
+        <div class="svc-panel-label"><span class="live-dot"></span>LIVE FUNNEL</div>
+        <ul class="svc-panel-list">
+          <li><span class="b"></span>Awareness → Engagement → Capture → Qualified → Closed</li>
+          <li><span class="b"></span>67% avg. lead volume increase across active campaigns</li>
+        </ul>
+        <div class="svc-panel-stats">
+          <div class="svc-panel-stat"><div class="n">₹297</div><div class="l">Cost per Lead</div></div>
+          <div class="svc-panel-stat"><div class="n">11.0%</div><div class="l">Close Rate</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-head reveal"><h2>Six engines of <em>pipeline growth</em></h2><p>We don't run individual tactics. We build a complete, interconnected lead generation system — every channel working together, every lead tracked to revenue.</p></div>
+    <div class="detail-grid" style="margin-bottom:5rem;">
+      <div class="detail-card reveal"><div class="detail-num">Engine 01</div><h4>SEO & Content</h4><p>Organic lead generation through strategic content marketing, keyword targeting, and technical SEO.</p><div class="detail-tags"><span class="detail-tag">Keyword research</span><span class="detail-tag">Technical SEO</span></div></div>
+      <div class="detail-card reveal"><div class="detail-num">Engine 02</div><h4>Paid Acquisition</h4><p>High-ROI paid campaigns across Google, Meta, LinkedIn, and YouTube — optimised for lowest cost per qualified lead.</p><div class="detail-tags"><span class="detail-tag">Google Ads</span><span class="detail-tag">Meta</span></div></div>
+      <div class="detail-card reveal"><div class="detail-num">Engine 03</div><h4>Outbound Email</h4><p>Personalised cold email sequences to decision-makers, researched and A/B tested for maximum inbox placement.</p><div class="detail-tags"><span class="detail-tag">Prospect research</span><span class="detail-tag">Deliverability</span></div></div>
+      <div class="detail-card reveal"><div class="detail-num">Engine 04</div><h4>Lead Nurturing</h4><p>Automated multi-channel nurture sequences that keep prospects warm from first touch to sales-ready.</p><div class="detail-tags"><span class="detail-tag">Lead scoring</span><span class="detail-tag">CRM sync</span></div></div>
+      <div class="detail-card reveal"><div class="detail-num">Engine 05</div><h4>Landing Pages & CRO</h4><p>High-converting landing pages designed, built, and tested to maximise the value of every click.</p><div class="detail-tags"><span class="detail-tag">A/B testing</span><span class="detail-tag">Form optimisation</span></div></div>
+      <div class="detail-card reveal"><div class="detail-num">Engine 06</div><h4>Analytics & Attribution</h4><p>Full-funnel attribution showing exactly which channels, campaigns, and keywords drive your best leads.</p><div class="detail-tags"><span class="detail-tag">GA4</span><span class="detail-tag">Multi-touch attribution</span></div></div>
+    </div>
+
+    <div class="svc-head reveal"><h2>Your full-funnel <em>growth machine</em></h2><p>Six carefully sequenced stages that take a cold stranger and turn them into a revenue-generating customer.</p></div>
+    <div class="timeline2 reveal" style="margin-bottom:5rem;">
+      <div class="tl2-item"><div class="tl2-num">01</div><div class="tl2-content"><h4>Audit</h4><p>Deep analysis of your current funnel, competitors, and ICP to find the highest-impact opportunities.</p></div></div>
+      <div class="tl2-item"><div class="tl2-num">02</div><div class="tl2-content"><h4>Attract</h4><p>Multi-channel campaigns drive the right traffic — organic, paid, and outbound working in concert.</p></div></div>
+      <div class="tl2-item"><div class="tl2-num">03</div><div class="tl2-content"><h4>Capture</h4><p>High-converting landing pages and lead magnets turn visitors into named, contactable leads.</p></div></div>
+      <div class="tl2-item"><div class="tl2-num">04</div><div class="tl2-content"><h4>Qualify</h4><p>Automated lead scoring and nurture sequences separate high-value prospects from browsers.</p></div></div>
+      <div class="tl2-item"><div class="tl2-num">05</div><div class="tl2-content"><h4>Convert</h4><p>Sales-ready leads delivered to your CRM with full context, history, and intent signals.</p></div></div>
+      <div class="tl2-item"><div class="tl2-num">06</div><div class="tl2-content"><h4>Optimise</h4><p>Weekly reporting and continuous A/B testing to improve every metric in the funnel.</p></div></div>
+    </div>
+
+    <div class="svc-head reveal"><h2>The numbers <em>don't lie</em></h2><p>Across all active EduSecure lead generation campaigns. These are real, measured outcomes — not projections.</p></div>
+    <div class="stats-strip2 reveal" style="margin-bottom:4rem;">
+      <div class="stat-box2"><div class="n">67%</div><div class="l">Avg Lead Volume Increase</div><div class="d">Lift in qualified leads within 90 days of campaign launch.</div></div>
+      <div class="stat-box2"><div class="n">3.8×</div><div class="l">Avg ROAS</div><div class="d">Return on ad spend across managed paid acquisition campaigns.</div></div>
+      <div class="stat-box2"><div class="n">42%</div><div class="l">Cost Per Lead Reduction</div><div class="d">Average reduction in CPL after our first 60-day optimisation.</div></div>
+      <div class="stat-box2"><div class="n">14 days</div><div class="l">Time to First Lead</div><div class="d">Days from campaign launch to your first qualified lead.</div></div>
+    </div>
+
+    <div class="svc-head reveal"><h2>Before & <em>after</em> EduSecure</h2><p>Campaign performance, 90-day comparison, across a representative client engagement.</p></div>
+    <div class="ba-grid2 reveal" style="margin-bottom:2rem;">
+      <div class="ba-row2"><span class="ba-l">Monthly Leads</span><span class="ba-vals"><span class="before">48</span><span class="arrow">→</span><span class="after">187</span></span></div>
+      <div class="ba-row2"><span class="ba-l">Cost Per Lead</span><span class="ba-vals"><span class="before">₹1,840</span><span class="arrow">→</span><span class="after">₹297</span></span></div>
+      <div class="ba-row2"><span class="ba-l">Landing Page CVR</span><span class="ba-vals"><span class="before">1.2%</span><span class="arrow">→</span><span class="after">4.8%</span></span></div>
+      <div class="ba-row2"><span class="ba-l">Organic Traffic</span><span class="ba-vals"><span class="before">820/mo</span><span class="arrow">→</span><span class="after">4,200/mo</span></span></div>
+      <div class="ba-row2"><span class="ba-l">SQL Close Rate</span><span class="ba-vals"><span class="before">6%</span><span class="arrow">→</span><span class="after">19%</span></span></div>
+    </div>
+    <div class="testi2 reveal" style="margin-bottom:5rem;">
+      <p>"EduSecure turned our marketing from a cost centre into our best-performing sales channel. In 90 days, our pipeline tripled and our cost per acquisition dropped by 84%. Genuinely transformational."</p>
+      <div class="attr">Head of Growth, Rahul Mehta — NovaVenture EdTech</div>
+      <div class="results">
+        <div><div class="n">3×</div><div class="l">Pipeline Growth</div></div>
+        <div><div class="n">84%</div><div class="l">CAC Reduction</div></div>
+        <div><div class="n">90</div><div class="l">Days</div></div>
+      </div>
+    </div>
+
+    <div class="svc-head reveal" id="leadgen-pricing"><h2>Pick your <em>growth plan</em></h2><p>All plans include our full lead generation system. The difference is volume, channels, and how fast we scale you.</p></div>
+    <div class="pricing-grid2 reveal" style="margin-bottom:5rem;">
+      <div class="price-card">
+        <div class="price-tier">Launch</div>
+        <div class="price-val"><small>From </small>₹28k</div>
+        <div class="price-cycle">per month</div>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>ICP research & targeting</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>1 paid channel + 1 landing page</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Email nurture sequence</li>
+          <li class="off"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>SEO & content marketing</li>
+        </ul>
+        <a href="#contact" class="price-cta">Get Started</a>
+      </div>
+      <div class="price-card feat">
+        <div class="price-badge">Best ROI</div>
+        <div class="price-tier">Scale</div>
+        <div class="price-val"><small>From </small>₹68k</div>
+        <div class="price-cycle">per month</div>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>3 paid channels + retargeting</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>3 landing pages + A/B testing</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>SEO & monthly content</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Weekly reporting & calls</li>
+        </ul>
+        <a href="#contact" class="price-cta">Get Started</a>
+      </div>
+      <div class="price-card">
+        <div class="price-tier">Enterprise</div>
+        <div class="price-val">Custom</div>
+        <div class="price-cycle">Scoped to your goals</div>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>All Scale features</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Dedicated growth strategist</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Account-based marketing (ABM)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>SLA-backed lead volume targets</li>
+        </ul>
+        <a href="#contact" class="price-cta">Talk to Us</a>
+      </div>
+    </div>
+
+    <div class="svc-head reveal"><h2>Questions & <em>answers</em></h2><p>Still unsure? Book a free 30-minute audit call and we'll answer every question about your specific situation.</p></div>
+    <div class="faq-list2 reveal">
+      <div class="faq-item2"><div class="faq-q2">How quickly will I see results?<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="faq-a2"><p>Most clients see their first leads within 14 days of launch. Significant pipeline impact typically shows within 45–60 days, with compounding results by day 90.</p></div></div>
+      <div class="faq-item2"><div class="faq-q2">Do I need an existing marketing setup?<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="faq-a2"><p>No. We handle everything from scratch — CRM setup, ad accounts, landing pages, content, and tracking. If you have existing assets, we audit and improve them.</p></div></div>
+      <div class="faq-item2"><div class="faq-q2">What industries do you work with?<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="faq-a2"><p>We specialise in EdTech, B2B SaaS, professional services, and educational institutions — but our methodology works across any consultative-sales sector.</p></div></div>
+      <div class="faq-item2"><div class="faq-q2">How do you define a "qualified lead"?<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="faq-a2"><p>We work with you in week one to define your ideal lead profile. Only contacts matching those criteria are delivered to your CRM as MQLs — we don't pad numbers.</p></div></div>
+      <div class="faq-item2"><div class="faq-q2">What's your minimum contract term?<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="faq-a2"><p>We ask for a 3-month initial commitment to build the system and start optimising, then run on monthly rolling agreements.</p></div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     06 · CREATIVE DESIGN — DEEP DIVE
+═══════════════════════════════════════════════════════ -->
+<section class="svc-section alt" id="design" style="--accent:var(--violet); --accent2:var(--violet2)">
+  <div class="svc-inner">
+
+    <div class="svc-banner">
+      <div>
+        <div class="svc-kicker">06 · Creative Design Studio</div>
+        <h1>Design That <em>Speaks</em> Louder Than Words</h1>
+        <p class="svc-banner-desc">Bold visuals — from stunning graphics and brand identities to cinematic video edits and motion content. Every pixel serves a purpose, every frame tells your story.</p>
+        <div class="svc-actions">
+          <a href="#design-process" class="svc-btn">See How We Work <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="#contact" class="svc-btn-out">Start a Project</a>
+        </div>
+      </div>
+      <div class="svc-panel reveal">
+        <div class="svc-panel-label"><span class="live-dot"></span>STUDIO SNAPSHOT</div>
+        <div class="svc-panel-stats">
+          <div class="svc-panel-stat"><div class="n">150+</div><div class="l">Projects Completed</div></div>
+          <div class="svc-panel-stat"><div class="n">80+</div><div class="l">Happy Clients</div></div>
+          <div class="svc-panel-stat"><div class="n">98%</div><div class="l">Satisfaction</div></div>
+          <div class="svc-panel-stat"><div class="n">2–5 days</div><div class="l">Typical Turnaround</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-head reveal"><h2>Creative services <em>built to convert</em></h2><p>From initial concept to final delivery, we cover every design touchpoint your brand needs to thrive.</p></div>
+    <div class="detail-grid" style="margin-bottom:5rem;">
+      <div class="detail-card reveal"><div class="detail-num">01 — Most Popular</div><h4>Graphic Design</h4><p>Eye-catching visuals for print and digital — social posts, banners, flyers, brochures, and marketing collateral that stop the scroll.</p><div class="detail-tags"><span class="detail-tag">Social Media</span><span class="detail-tag">Print</span><span class="detail-tag">Infographics</span></div></div>
+      <div class="detail-card reveal"><div class="detail-num">02</div><h4>Video Editing</h4><p>Professional video post-production — reels, brand films, YouTube content, promo videos, and motion graphics.</p><div class="detail-tags"><span class="detail-tag">Reels</span><span class="detail-tag">Motion Graphics</span><span class="detail-tag">Color Grading</span></div></div>
+      <div class="detail-card reveal"><div class="detail-num">03</div><h4>Logo Creation</h4><p>Memorable, versatile logos and complete brand identity systems that tell your story at a glance.</p><div class="detail-tags"><span class="detail-tag">Wordmark</span><span class="detail-tag">Icon Logo</span><span class="detail-tag">Brand Kit</span></div></div>
+      <div class="detail-card reveal"><div class="detail-num">04</div><h4>UI/UX Design</h4><p>Clean, intuitive digital interfaces for websites, apps, and dashboards — from wireframes to developer-ready Figma files.</p><div class="detail-tags"><span class="detail-tag">Figma</span><span class="detail-tag">Wireframes</span><span class="detail-tag">Prototypes</span></div></div>
+      <div class="detail-card reveal"><div class="detail-num">05</div><h4>Social Media Design</h4><p>Consistent, on-brand content calendars and template systems for Instagram, LinkedIn, and Facebook.</p><div class="detail-tags"><span class="detail-tag">Templates</span><span class="detail-tag">Stories</span><span class="detail-tag">Thumbnails</span></div></div>
+      <div class="detail-card reveal"><div class="detail-num">06</div><h4>Brand Identity</h4><p>Holistic brand strategy and visual systems — colour palettes, typography guides, brand books, and stationery.</p><div class="detail-tags"><span class="detail-tag">Brand Guide</span><span class="detail-tag">Typography</span></div></div>
+    </div>
+
+    <div class="svc-head reveal" id="design-process"><h2>Our simple <em>4-step process</em></h2><p>From discovery to delivery in a clear, collaborative workflow designed for speed and quality.</p></div>
+    <div class="timeline2 reveal" style="margin-bottom:5rem;">
+      <div class="tl2-item"><div class="tl2-num">01</div><div class="tl2-content"><h4>Discovery Call</h4><p>We understand your brand, audience, goals, and vision through a focused briefing session.</p></div></div>
+      <div class="tl2-item"><div class="tl2-num">02</div><div class="tl2-content"><h4>Concept & Strategy</h4><p>Our team develops creative concepts and shares moodboards for your approval before any design begins.</p></div></div>
+      <div class="tl2-item"><div class="tl2-num">03</div><div class="tl2-content"><h4>Design & Refine</h4><p>We craft your deliverables with precision, incorporating your feedback through revision rounds.</p></div></div>
+      <div class="tl2-item"><div class="tl2-num">04</div><div class="tl2-content"><h4>Deliver & Launch</h4><p>Final files delivered in all formats needed — print-ready, web-optimised, and future-proof.</p></div></div>
+    </div>
+
+    <div class="svc-head reveal"><h2>Where creativity meets <em>strategy</em></h2><p>We're not just designers — we're brand builders.</p></div>
+    <div class="detail-grid" style="grid-template-columns:repeat(auto-fit,minmax(230px,1fr));">
+      <div class="detail-card reveal"><h4>Fast Turnaround</h4><p>Quick delivery without sacrificing quality. Most projects completed within 2–5 business days.</p></div>
+      <div class="detail-card reveal"><h4>Startup-Friendly Pricing</h4><p>Transparent, flexible packages designed for early-stage companies and growing businesses.</p></div>
+      <div class="detail-card reveal"><h4>Unlimited Revisions</h4><p>We iterate until you're 100% satisfied. Your vision is our priority, always.</p></div>
+      <div class="detail-card reveal"><h4>Dedicated Support</h4><p>A single point of contact who knows your brand and ensures seamless communication throughout.</p></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ TRUST METRICS ═══ -->
+<section class="section" id="results" style="text-align:center;">
+  <div class="section-eyebrow reveal" style="justify-content:center;">Track Record</div>
+  <h2 class="section-title reveal" style="margin-bottom:3rem;">Numbers that <em>back it up</em></h2>
+  <div class="trust-metrics reveal">
+    <div class="metric-row">
+      <div class="metric-label">Client Satisfaction</div>
+      <div class="metric-bar-wrap"><div class="metric-bar" data-width="0.95" style="--w:95"></div></div>
+      <div class="metric-pct">95%</div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-label">Security Score</div>
+      <div class="metric-bar-wrap"><div class="metric-bar" data-width="1" style="--w:100"></div></div>
+      <div class="metric-pct">A+</div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-label">Lead Conversion Lift</div>
+      <div class="metric-bar-wrap"><div class="metric-bar" data-width="0.78" style="--w:78"></div></div>
+      <div class="metric-pct">78%</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA / CONTACT ═══ -->
+<section class="section cta-section" id="contact">
+  <div class="cta-inner">
+    <div class="cta-left reveal">
+      <div class="section-eyebrow">Get In Touch</div>
+      <h2>Ready to build your <em>success story?</em></h2>
+      <p>Tell us what you need and we'll craft a solution around it. No templates, no cookie-cutter packages — just focused, expert work delivered with care.</p>
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+        <div style="display:flex;align-items:center;gap:1rem;">
+          <div style="width:36px;height:36px;border:1px solid rgba(212,168,67,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--muted);">info@edusecuresolutions.com</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;">
+          <div style="width:36px;height:36px;border:1px solid rgba(212,168,67,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--muted);">edusecuresolutions.com</span>
+        </div>
+      </div>
+    </div>
+    <div class="cta-right reveal">
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input type="text" class="form-input" placeholder="John Smith">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-input" placeholder="john@company.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Organisation</label>
+          <input type="text" class="form-input" placeholder="Your company or institution">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Service of Interest</label>
+          <select class="form-select form-input">
+            <option value="">Select a service...</option>
+            <option>Website Creation</option>
+            <option>LMS Administration</option>
+            <option>Customer Support</option>
+            <option>Agentic AI</option>
+            <option>Lead Generation</option>
+            <option>Creative Design</option>
+            <option>Multiple Services</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tell Us About Your Project</label>
+          <textarea class="form-textarea" placeholder="Describe your goals and challenges..."></textarea>
+        </div>
+        <button class="form-submit">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo" style="text-decoration:none;">
+        <div class="logo-emblem">
+          <svg viewBox="0 0 24 24"><path d="M12 2L4 6v6c0 5.5 3.5 10.7 8 12 4.5-1.3 8-6.5 8-12V6l-8-4z"/></svg>
+        </div>
+        <div>
+          <div class="logo-name">Edu<span>Secure</span></div>
+          <div class="logo-tagline">Solutions</div>
+        </div>
+      </a>
+      <p>Building your digital success story — one secure, high-performing solution at a time.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#web">Website Creation</a></li>
+        <li><a href="#lms">LMS Administration</a></li>
+        <li><a href="#support">Customer Support</a></li>
+        <li><a href="#ai">Agentic AI</a></li>
+        <li><a href="#leadgen">Lead Generation</a></li>
+        <li><a href="#design">Creative Design</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+        <li><a href="#">Security</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 EduSecure Solutions. All rights reserved.</span>
+    <div class="footer-socials">
+      <a href="#" class="social-btn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+      <a href="#" class="social-btn"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+      <a href="#" class="social-btn"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ═══ CURSOR ═══ */
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx + 'px';
+  cursor.style.top = my + 'px';
+});
+
+function animateRing() {
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+document.querySelectorAll('a, button, .service-card, .detail-card, .price-card, .faq-q2, .pillar, select, input, textarea').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.transform = 'translate(-50%, -50%) scale(2.5)';
+    ring.style.width = '60px';
+    ring.style.height = '60px';
+    ring.style.borderColor = 'rgba(212,168,67,0.8)';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+    ring.style.width = '38px';
+    ring.style.height = '38px';
+    ring.style.borderColor = 'rgba(212,168,67,0.5)';
+  });
+});
+
+/* ═══ SCROLL REVEAL ═══ */
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const siblings = [...entry.target.parentElement.children].filter(c => c.classList.contains('reveal'));
+      const idx = siblings.indexOf(entry.target);
+      setTimeout(() => entry.target.classList.add('up'), Math.min(idx, 6) * 70);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+reveals.forEach(el => observer.observe(el));
+
+/* ═══ METRIC BARS ═══ */
+const barObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.metric-bar').forEach(bar => bar.classList.add('animated'));
+      barObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.4 });
+document.querySelectorAll('.trust-metrics').forEach(el => barObserver.observe(el));
+
+/* ═══ CARD MOUSE RADIAL ═══ */
+document.querySelectorAll('.service-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1) + '%';
+    const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1) + '%';
+    card.style.setProperty('--mx', x);
+    card.style.setProperty('--my', y);
+  });
+});
+
+/* ═══ NAV SCROLL ═══ */
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').style.padding = window.scrollY > 50 ? '0.9rem 5vw' : '1.25rem 5vw';
+});
+
+/* ═══ FAQ ACCORDIONS ═══ */
+document.querySelectorAll('.faq-item2').forEach(item => {
+  item.querySelector('.faq-q2').addEventListener('click', () => {
+    const wasOpen = item.classList.contains('open');
+    item.closest('.faq-list2').querySelectorAll('.faq-item2').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+
+/* ═══ CONTACT FORM SUBMIT ═══ */
+document.querySelector('.form-submit').addEventListener('click', function() {
+  this.textContent = 'Message Sent ✓';
+  this.style.background = 'linear-gradient(135deg, #2ec4b6, #25a99d)';
+  setTimeout(() => {
+    this.textContent = 'Send Message →';
+    this.style.background = '';
+  }, 3000);
+});
+</script>
+</body>
+</html>
